@@ -1,0 +1,190 @@
+﻿@model PagedList.IPagedList<Model.EF.NhanVien>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layouts.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gentelella Alela! | </title>
+    <!-- Bootstrap -->
+    <link href="~/Areas/Manager/Assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Areas/Manager/Assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Areas/Manager/Assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Areas/Manager/Assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Areas/Manager/Assets/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="form-horizontal form" novalidate>
+                     @using (Html.BeginForm("Index", "NhanVien", FormMethod.Get))
+                     {
+                        <form class="login-form">
+                            <div class="x_title">
+                                <h2>Bảng Tìm Kiếm<small></small></h2>
+
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <p class="message">
+                                        <a href="#"><input type="button" value="Tìm Kiếm Nâng Cao" class="btn btn-info message"></a>
+                                    </p>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TenNV">
+                                    Tên hoặc mã nhân viên
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.TenTimKiem" name="TenNV" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 col-md-offset-3">
+                                <button id="send" type="submit" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </form>
+                        <form class="search-form">
+                            <div class="x_title">
+                                <h2>Bảng Tìm Kiếm Nâng Cao<small></small></h2>
+                                <ul class="nav navbar-right">
+                                    <p class="message">
+                                        <a href="#">
+                                            <i class="fa fa-undo"></i>
+                                        </a>
+                                    </p>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TenNV">
+                                    Tên hoặc mã nhân viên
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.TenTimKiem" name="TenNV" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>                        
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaCV">
+                                    Mã Chức Vụ
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.MaCV" name="MaCV" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DiaChi">
+                                    Địa Chỉ
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.DiaChi" name="DiaChi" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
+                                    Số Điện Thoại
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.Sdt" name="Sdt" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            @*<div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
+                                    Ngày Gia Nhập
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.Day" name="Ngay" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>*@
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
+                                    Tình Trạng 
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" placeholder="1: còn làm việc , 0: đã nghĩ"value="@ViewBag.Stt" name="Stt" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-md-offset-3">
+                                <button id="send" type="submit" class="btn btn-success">Submit</button>
+                            </div>
+
+
+
+
+                        </form>
+                     }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+<div class="row">
+        <div class="x_panel">                        
+                  
+                    <div class="x_title">
+                    <h2>Danh sách nhân viên</h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">                 
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Mã Nhân Viên</th>
+                                <th>Tên Nhân Viên</th>
+                                <th>Mã Chức Vu</th>
+                                <th>Địa Chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày gia nhập</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.MaNV">
+                                    <td>
+                                        <a href="/Manager/NhanVien/Edit/@item.MaNV">Sửa ||</a>
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaNV }, new AjaxOptions
+                                       {
+                                           Confirm = "Bạn muốn xóa bản ghi này?",
+                                           OnComplete = "$('row_" + @item.MaNV + "').remove()",
+                                           HttpMethod = "Delete"
+
+                                       })
+                                    </td>
+                                    <td>@item.MaNV</td>
+                                    <td>@item.TenNV</td>
+                                    <td>@item.MaChucVu</td>
+                                    <td>@item.DiaChi</td>
+                                    <td>@item.Sdt</td>
+                                    <td>@item.NgayTao</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @TenTimKiem = ViewBag.TenTimKiem }))
+                </div>
+            </div>
+    </div>
+ </body>
+</html>

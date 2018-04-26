@@ -1,0 +1,14 @@
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\Model.dll.config
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\Model.dll
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\Model.pdb
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\EntityFramework.dll
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\EntityFramework.xml
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\obj\Debug\Model.dll
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\obj\Debug\Model.pdb
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\PagedList.dll
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\PagedList.Mvc.dll
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\PagedList.xml
+C:\Users\phucxp12vn\source\repos\QuanLiNhaHang\Model\bin\Debug\PagedList.Mvc.xml

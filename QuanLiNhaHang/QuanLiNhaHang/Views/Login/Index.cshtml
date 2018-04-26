@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model QuanLiNhaHang.Models.LoginModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rube Restaurant |</title>
+    <!-- Bootstrap -->
+    <link href="~/Areas/Manager/Assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Areas/Manager/Assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Areas/Manager/Assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/Areas/Manager/Assets/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Areas/Manager/Assets/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <h1>Bảng Đăng Nhập</h1>
+
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(model => model.MaNV, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Mã nhân viên" })
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                            <div>
+
+                                <button type="submit" class="btn btn-default submit">Đăng nhập</button>
+                            </div>
+                        }
+                  
+                       
+                                        <div class="clearfix"></div>
+                            <div class="separator">
+                                <div class="clearfix"></div>
+                                <br />
+                                <div>
+                                    <h1><i class="fa fa-cube"></i> Nhà Hàng Rube</h1>
+                                    <p>©2016 All Rights Reserved. Privacy and Terms.</p>
+                                </div>
+                            </div>
+                    
+</section>
+</div>
+            </div>
+        </div>
+</body>
+</html>
