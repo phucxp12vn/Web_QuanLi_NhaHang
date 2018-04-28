@@ -242,6 +242,8 @@
     <Content Include="Areas\Manager\Views\NhanVien\Create.cshtml" />
     <Content Include="Areas\Manager\Views\NhanVien\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\demo\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Navigation.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Profile_Info.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

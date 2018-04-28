@@ -15,7 +15,7 @@ namespace QuanLiNhaHang
             routes.MapRoute(
             "Find",                                              // Route name
             "{controller}/{action}/{TenNV}/{MaCV}",                           // URL with parameters
-            new { controller = "NhanVien", action = "Index", TenNV = "", MaCV = "" }  // Parameter defaults
+            new { controller = "NhanVien", action = "Index", TenNV = "", MaCV = "", DiaChi = "", Sdt = "", Ngay = "", Stt = "" }  // Parameter defaults
                  );
             routes.MapRoute(
                 name: "Default",

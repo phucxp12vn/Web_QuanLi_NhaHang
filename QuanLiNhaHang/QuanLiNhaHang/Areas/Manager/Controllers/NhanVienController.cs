@@ -1,5 +1,6 @@
 ﻿using Model.Dao;
 using Model.EF;
+using QuanLiNhaHang.Common;
 using QuanLiNhaHang.Controllers;
 using System;
 using System.Collections.Generic;
@@ -9,19 +10,19 @@ using System.Web.Mvc;
 
 namespace QuanLiNhaHang.Areas.Manager.Controllers
 {
-    public class NhanVienController : Controller
+    public class NhanVienController : BaseController
     {
         // GET: Manager/NhanVien
-        public ActionResult Index(string TenNV, string MaCV,/* string DiaChi, string Sdt,*/ /*DateTime ngay,*/ /*int Stt,*/ int page = 1, int pagesize = 10)
+        public ActionResult Index(NhanVien nv,string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime> ngay, Nullable<int> Stt,int page = 1, int pagesize = 10)
         {
             var dao = new NhanVienDao();
-            var model = dao.ListAllPaging(TenNV,MaCV,/*DiaChi,Sdt,*//* ngay,*//* Stt,*/ page, pagesize);
+            var model = dao.ListAllPaging(TenNV, MaCV, DiaChi, Sdt, ngay, Stt, page, pagesize);
             ViewBag.TenTimKiem = TenNV;
             ViewBag.MaCV = MaCV;
-            //ViewBag.DiaChi = DiaChi;
-            //ViewBag.Sdt = Sdt;
-            ////ViewBag.day = ngay;
-            //ViewBag.Stt = Stt;
+            ViewBag.DiaChi = DiaChi;
+            ViewBag.Sdt = Sdt;
+            ViewBag.day = ngay;
+            ViewBag.Stt = Stt;
             return View(model);
         }
 
@@ -30,15 +31,10 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            SetViewBag();
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Edit(string id)
-        {
-            var nv = new NhanVienDao().GetByID(id);
-            return View(nv);
-        }
 
 
         [HttpPost]
@@ -62,10 +58,25 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
 
 
 
+        public void SetViewBag(string selectedId = null)
+        {
+            var dao = new NhanVienDao();
+            ViewBag.MaChucVu = new SelectList(dao.ListAll(), "MaChucVu", "TenChucVu", selectedId);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            var nv = new NhanVienDao().GetByID(id);
+            SetViewBag(nv.MaChucVu);
+            return View(nv);
+        }
+
       
         [HttpPost]
         public ActionResult Edit(NhanVien nv)
         {
+            nv.Status = true;
             if (ModelState.IsValid)
             {
                 var dao = new NhanVienDao();
@@ -85,10 +96,17 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpDelete]
         public ActionResult Delete(string id)
         {
-            new NhanVienDao().Delete(id);
+            new NhanVienDao().Khoa(id);
             return RedirectToAction("Index","NhanVien");
         }
-         
+
+        [ChildActionOnly]
+        public ActionResult _Profile_Info()
+        {
+            UserLogin session = (UserLogin)Session[CommonContants.NHANVIEN_SESSION];
+            var model = session;
+            return PartialView(model);
+        }
 
     }
 }

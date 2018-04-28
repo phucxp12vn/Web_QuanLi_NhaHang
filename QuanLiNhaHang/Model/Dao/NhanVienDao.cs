@@ -16,6 +16,10 @@ namespace Model.Dao
             db = new QuanLiNhaHangDbContext();
         }
 
+        public List<ChucVu> ListAll()
+        {
+            return db.ChucVus.ToList();
+        }
         public string Insert(NhanVien nv)
         {
             db.NhanViens.Add(nv);
@@ -43,7 +47,23 @@ namespace Model.Dao
             }
         }
 
-        public IEnumerable<NhanVien> ListAllPaging(string TenNV, string MaCV/*, string DiaChi, string Sdt, *//*DateTime ngay,*//*int Stt*/, int page, int pagesize )
+        public bool Khoa(string MaNV)
+        {
+            try
+            {
+                var tempt = db.NhanViens.Find(MaNV);
+                tempt.Status = false;
+                db.SaveChanges();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public IEnumerable<NhanVien> ListAllPaging(string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime>  ngay, Nullable<int> Stt ,int page, int pagesize )
         {
             IQueryable<NhanVien> model = db.NhanViens;
             if(!string.IsNullOrEmpty(TenNV))
@@ -54,19 +74,26 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.MaChucVu.Contains(MaCV) );
             }
-            //if (!string.IsNullOrEmpty(DiaChi))
-            //{
-            //    model = model.Where(x => x.DiaChi.Contains(DiaChi));
-            //}
-            //if (!string.IsNullOrEmpty(Sdt))
-            //{
-            //    model = model.Where(x => x.Sdt.Contains(Sdt));
-            //}
-            //string format = "dd/MM/yyyy HH:mm:ss";
-            //if (!string.IsNullOrEmpty(ngay.ToString(format)))
-            //{
-            //    model = model.Where(x => x.NgayTao.Equals(ngay));
-            //}
+            if (Stt == 1 || Stt != 0)
+            {
+                model = model.Where(x => x.Status == true);
+            }
+            else model = model.Where(x => x.Status == false);
+            if (!string.IsNullOrEmpty(DiaChi))
+            {
+                model = model.Where(x => x.DiaChi.Contains(DiaChi));
+            }
+            if (!string.IsNullOrEmpty(Sdt))
+            {
+                model = model.Where(x => x.Sdt.Contains(Sdt));
+            }
+
+
+            if (ngay != null)
+            {
+                DateTime day = (DateTime)ngay;
+                model = model.Where(x => x.NgayTao == day);
+                    }
             return model.OrderByDescending(x => x.NgayTao).ToPagedList(page,pagesize);
         }
 

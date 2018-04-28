@@ -14,9 +14,11 @@ namespace QuanLiNhaHang.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            Session[CommonContants.NHANVIEN_SESSION] = null;
+
             return View();
         }
-
+       
         public ActionResult Login(LoginModel model)
         {
             if(ModelState.IsValid)
@@ -31,7 +33,7 @@ namespace QuanLiNhaHang.Controllers
                     nvSession.TenNV = nv.TenNV;
                     nvSession.MaCV = nv.MaChucVu;
                     Session.Add(CommonContants.NHANVIEN_SESSION, nvSession);
-                    if(nv.MaChucVu == "QL")
+                    if (nv.MaChucVu == "QL")
                     return RedirectToAction("Index", "Manager/Home");
                     else
                     return RedirectToAction("Index", "Employee/Home");
@@ -50,9 +52,8 @@ namespace QuanLiNhaHang.Controllers
                     ModelState.AddModelError("", "Mật khẩu nhập vào không đúng");
                 }
             }
-            return View("Index");
-          
-
+         
+            return View("Index");         
         }
     }
 }

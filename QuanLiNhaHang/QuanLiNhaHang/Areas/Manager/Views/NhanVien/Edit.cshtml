@@ -61,7 +61,7 @@
 
 
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MaChucVu, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.DropDownListFor(model => model.MaChucVu,null, new { @class = "form-control col-md-7 col-xs-12" })
                                     @Html.ValidationMessageFor(model => model.MaChucVu, "", new { @class = "text-danger" })
                                 </div>
 
