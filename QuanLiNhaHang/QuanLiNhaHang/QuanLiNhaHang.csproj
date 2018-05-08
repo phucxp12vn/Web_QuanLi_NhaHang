@@ -275,7 +275,6 @@
     <Content Include="Areas\Employee\Views\web.config" />
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Manager\Views\Shared\_Layouts.cshtml" />
-    <Content Include="Areas\Employee\Views\Home\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Home\Index.cshtml" />
     <Content Include="Areas\Manager\Views\NhanVien\Index.cshtml" />
     <Content Include="Areas\Manager\Views\NhanVien\Create.cshtml" />
@@ -285,6 +284,7 @@
     <Content Include="Areas\Manager\Views\Shared\_Profile_Info.cshtml" />
     <Content Include="Content\css for Index\icons\responsivenav.ttf" />
     <Content Include="Content\css for Index\icons\responsivenav.woff" />
+    <Content Include="Areas\Employee\Views\Shared\_LayoutPage1.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -326,7 +326,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Models\" />
-    <Folder Include="Areas\Employee\Views\Shared\" />
+    <Folder Include="Areas\Employee\Views\Home\" />
     <Folder Include="Areas\Manager\Assets\build\" />
     <Folder Include="Areas\Manager\Assets\vendors\" />
     <Folder Include="Areas\Manager\Models\" />

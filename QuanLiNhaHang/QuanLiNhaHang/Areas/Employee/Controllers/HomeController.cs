@@ -10,7 +10,7 @@ namespace QuanLiNhaHang.Areas.Employee.Controllers
     public class HomeController : BaseController
     {
         // GET: Employee/Home
-        public ActionResult Index()
+        public ActionResult Info()
         {
             return View();
         }

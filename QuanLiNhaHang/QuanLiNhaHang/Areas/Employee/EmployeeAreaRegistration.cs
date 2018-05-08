@@ -17,7 +17,7 @@ namespace QuanLiNhaHang.Areas.Employee
             context.MapRoute(
                 "Employee_default",
                 "Employee/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Info", id = UrlParameter.Optional }
             );
         }
     }
