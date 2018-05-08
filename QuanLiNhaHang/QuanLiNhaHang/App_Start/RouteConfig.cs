@@ -12,15 +12,15 @@ namespace QuanLiNhaHang
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");          
-            routes.MapRoute(
-            "Find",                                              // Route name
-            "{controller}/{action}/{TenNV}/{MaCV}",                           // URL with parameters
-            new { controller = "NhanVien", action = "Index", TenNV = "", MaCV = "", DiaChi = "", Sdt = "", Ngay = "", Stt = "" }  // Parameter defaults
-                 );
+            //routes.MapRoute(
+            //"Find",                                              // Route name
+            //"{controller}/{action}/{TenNV}/{MaCV}",                           // URL with parameters
+            //new { controller = "NhanVien", action = "Index", TenNV = "", MaCV = "", DiaChi = "", Sdt = "", Ngay = "", Stt = "" }  // Parameter defaults
+            //     );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Index", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

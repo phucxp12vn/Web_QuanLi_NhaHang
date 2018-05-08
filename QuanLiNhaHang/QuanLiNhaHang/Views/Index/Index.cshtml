@@ -1,4 +1,9 @@
-﻿@{
+﻿
+@{
+    Layout = null;
+}
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -43,12 +48,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="logo"><a href="#"><img src="images/logo.png" alt="" /></a></div>
+                    <div class="logo"><a href="#"><img src="~/Content/image/logo.png" alt="" /></a></div>
                     <nav class="nav-collapse">
                         <ul>
                             <li class="menu-item active"><a href="#banner" data-scroll>Home</a></li>
                             <li class="menu-item"><a href="#dish" data-scroll>About</a></li>
-                            <li class="menu-item">@Html.ActionLink("Log in",)</li>
+                            <li class="menu-item">@Html.ActionLink("Log in", "Login", "Index")</li>
                         </ul>
                     </nav>
                     <div class="headesocial">
@@ -62,7 +67,7 @@
         </div>
     </header>
 
-    <section id="banner">
+    <section id="banner" style="background:url(/Content/image/banner.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -70,7 +75,7 @@
                         the right ingredients<br>
                         for the right food
                     </h1>
-                    <img class="os-animation" data-os-animation="zoomIn" data-os-animation-delay="0.5s" src="images/banner.jpg" alt="" />
+                    <img class="os-animation" data-os-animation="zoomIn" data-os-animation-delay="0.5s" src="~/Content/image/bannerbottm.png" alt="" />
                     <a href="#" class="table os-animation" data-os-animation="fadeInLeft" data-os-animation-delay="0.7s">BOOK A TABLE</a>
                     <a href="#" class="menu os-animation" data-os-animation="fadeInRight" data-os-animation-delay="0.7s">SEE THE MENU</a>
                 </div>
@@ -78,35 +83,35 @@
         </div>
     </section>
 
-    <section id="dish">
+    <section id="dish" style="background:url(/Content/image/box2.png)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-5 col-md-5 os-animation" data-os-animation="fadeInLeft" data-os-animation-delay="0.9s">
                     <h2>Just the right food</h2>
-                    <img class="parrern" src="images/dishdottm.png" alt="" />
+                    <img class="parrern" src="~/Content/image/dishdottm.png" alt="" />
                     <p>If you’ve been to one of our restaurants, you’ve seen – and tasted – what keeps our customers coming back for more. Perfect materials and freshly baked food, delicious Lambda cakes,  muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!</p>
-                    <img class="sign" src="images/sign.png" alt="" />
+                    <img class="sign" src="~/Content/image/sign.png" alt="" />
 
                 </div>
                 <div class="col-lg-7 col-sm-7 col-md-7 os-animation" data-os-animation="fadeInRight" data-os-animation-delay="0.9s">
-                    <img class="dish" src="images/dish.png" alt="" />
+                    <img class="dish" src="~/Content/image/dish.png" alt="" />
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="ingredients">
+    <section id="ingredients" style="background:url(/Content/image/ingridiants.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="backbalck">
                         <h2 class="os-animation" data-os-animation="zoomIn" data-os-animation-delay="0.3s">Fine ingredients</h2>
-                        <img class="ingridpatrn os-animation" data-os-animation="flipInX" data-os-animation-delay="0.5s" src="images/ingridiantsbottom.png" alt="" />
+                        <img class="ingridpatrn os-animation" data-os-animation="flipInX" data-os-animation-delay="0.5s" src="~/Content/image/ingridiantsbottom.png" alt="" />
                         <p class="os-animation" data-os-animation="zoomIn" data-os-animation-delay="0.7s">If you’ve been to one of our restaurants, you’ve seen – and tasted – what keeps our customers coming back for more. Perfect materials and freshly baked food, delicious Lambda cakes,  muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!</p>
 
-                        <img class="ingri os-animation" data-os-animation="bounceIn" data-os-animation-delay="0.6s" src="images/1.png" alt="" />
-                        <img class="ingri os-animation" data-os-animation="bounceIn" data-os-animation-delay="0.7s" src="images/2.png" alt="" />
-                        <img class="ingri os-animation" data-os-animation="bounceIn" data-os-animation-delay="0.8s" src="images/3.png" alt="" />
+                        <img class="ingri os-animation" data-os-animation="bounceIn" data-os-animation-delay="0.6s" src="~/Content/image/1.png" alt="" />
+                        <img class="ingri os-animation" data-os-animation="bounceIn" data-os-animation-delay="0.7s" src="~/Content/image/2.png" alt="" />
+                        <img class="ingri os-animation" data-os-animation="bounceIn" data-os-animation-delay="0.8s" src="~/Content/image/3.png" alt="" />
                     </div>
                 </div>
 
@@ -114,13 +119,13 @@
         </div>
     </section>
 
-    <div id="menu">
+    <div id="menu" style="background:url(/Content/image/box.png)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-6 col-md-6">
                     <article class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.3s">
                         <h2>Appetisers</h2>
-                        <img class="parrern" src="images/dishdottm.png" alt="" />
+                        <img class="parrern" src="~/Content/css for Index/images/dishdottm.png" alt="" />
                         <h3>Tzatsiki <span>$3.99</span></h3>
                         <p>Refreshing traditional cucumber and garlic yoghurt dip.</p>
                         <h3>Tzatsiki <span>$3.99</span></h3>
@@ -131,7 +136,7 @@
 
                     <article class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.7s">
                         <h2>Salads</h2>
-                        <img class="parrern" src="images/dishdottm.png" alt="" />
+                        <img class="parrern" src="~/Content/image/dishdottm.png" alt="" />
                         <h3>Olive_Special <span>$5.99</span></h3>
                         <p>Refreshing traditional cucumber and garlic yoghurt dip.</p>
                         <div>
@@ -148,7 +153,7 @@
                 <div class="col-lg-5 col-sm-6 col-md-6">
                     <article class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.5s">
                         <h2>Starters</h2>
-                        <img class="parrern" src="images/dishdottm.png" alt="" />
+                        <img class="parrern" src="~/Content/image/dishdottm.png" alt="" />
                         <h3>Haloumi <span>$3.99</span></h3>
                         <p>Refreshing traditional cucumber and garlic yoghurt dip.</p>
                         <h3>Spinach_Pie <span>$5.50</span></h3>
@@ -157,7 +162,7 @@
 
                     <article class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.9s">
                         <h2>Main Dishes</h2>
-                        <img class="parrern" src="images/dishdottm.png" alt="" />
+                        <img class="parrern" src="~/Content/image/dishdottm.png" alt="" />
                         <h3>Cornish_Mackerel <span>$5.99</span></h3>
                         <p>Refreshing traditional cucumber and garlic yoghurt dip.</p>
                         <div>
@@ -177,13 +182,13 @@
         </div>
     </div>
 
-    <section id="review">
+    <section id="review" style="background:url(/Content/image/review.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="backbalckcenter os-animation" data-os-animation="zoomIn" data-os-animation-delay="0.5s">
                         <h2>Guest Reviews</h2>
-                        <img class="ingridpatrn" src="images/ingridiantsbottom.png" alt="" />
+                        <img class="ingridpatrn" src="~/Content/image/ingridiantsbottom.png" alt="" />
                         <p><i class="fa fa-quote-left fa-lg" aria-hidden="true"></i>If you’ve been to one of our restaurants, you’ve seen – and tasted – what keeps our customers coming back for more. Perfect materials and freshly baked food, delicious Lambda cakes,  muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!</p>
                         <span>- food inc, New York</span>
 
@@ -200,7 +205,7 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-4 col-sm-4 os-animation" data-os-animation="fadeInLeft" data-os-animation-delay="0.3s">
                     <h3>About Us</h3>
-                    <img class="ingridpatrn" src="images/ingridiantsbottom.png" alt="" />
+                    <img class="ingridpatrn" src="~/Content/image/ingridiantsbottom.png" alt="" />
                     <p>
                         Lambda's new and expanded Chelsea location represents a truly authentic Greek patisserie, featuring breakfasts of fresh croissants and steaming bowls of café.
                         Lamda the best restaurant in town
@@ -210,7 +215,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-4 col-sm-4 os-animation" data-os-animation="fadeInLeft" data-os-animation-delay="0.5s">
                     <h3>Opening Hours</h3>
-                    <img class="ingridpatrn" src="images/ingridiantsbottom.png" alt="" />
+                    <img class="ingridpatrn" src="~/Content/image/ingridiantsbottom.png" alt="" />
                     Mon-Thu: 7:00am-8:00pm  <br>Fri-Sun: 7:00am-10:00pm
                     <div class="socials">
                         <i class="fa fa-cc-amex" aria-hidden="true"></i>
@@ -221,7 +226,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-4 col-sm-4 os-animation" data-os-animation="fadeInLeft" data-os-animation-delay="0.7s">
                     <h3>Our Location</h3>
-                    <img class="ingridpatrn" src="images/ingridiantsbottom.png" alt="" />
+                    <img class="ingridpatrn" src="~/Content/image/ingridiantsbottom.png" alt="" />
                     <address>
                         19th Paradise Street Sitia<br> 128 Meserole Avenue
                     </address>
@@ -235,7 +240,6 @@
             </div>
         </div>
     </footer>
-
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="~/Content/css for Index/js/script.js"></script>
     <script src="~/Content/css for Index/js/jquery-ui.js"></script>
@@ -243,3 +247,4 @@
     <script src="~/Content/css for Index/js/waypoints.min.js"></script>
 </body>
 </html>
+

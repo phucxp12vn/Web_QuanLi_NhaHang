@@ -23,7 +23,7 @@ namespace QuanLiNhaHang.Controllers
         {
             if(ModelState.IsValid)
             {
-                var dao = new TaikhoanDao();
+                var dao = new TaiKhoanDao();
                 var result = dao.Login(model.MaTaiKhoan, model.Password);
                 if (result == 1 )
                 {
