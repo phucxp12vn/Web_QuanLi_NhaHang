@@ -8,10 +8,10 @@ using PagedList;
 
 namespace Model.Dao
 {
-   public class TaikhoanDao
+   public class TaiKhoanDao
     {
         QuanLiNhaHangDbContext db = null;
-        public TaikhoanDao()
+        public TaiKhoanDao()
         {
             db = new QuanLiNhaHangDbContext();
         }
