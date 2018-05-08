@@ -33,9 +33,9 @@ namespace QuanLiNhaHang.Controllers
                     nvSession.Hoten = nv.HoTen;
                     nvSession.MaChucVu = nv.MaChucVu;
                     Session.Add(CommonContants.TaiKhoan_SESSION, nvSession);
-                    if (nv.MaChucVu == "QL")
+                    if (nv.MaChucVu == "CV02")
                     return RedirectToAction("Index", "Manager/Home");
-                    else
+                    else if(nv.MaChucVu=="CV03")
                     return RedirectToAction("Index", "Employee/Home");
                 }
                 else if(result == 0)
