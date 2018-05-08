@@ -1,4 +1,4 @@
-namespace Model
+namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,28 +6,30 @@ namespace Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ChiTietHoaDon")]
-    public partial class ChiTietHoaDon
+    [Table("ChiTietPhieuNhap")]
+    public partial class ChiTietPhieuNhap
     {
         [Key]
         [Column(Order = 0)]
         [StringLength(50)]
-        public string MaHD { get; set; }
+        public string MaMatHang { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(50)]
-        public string MaMonAn { get; set; }
+        public string MaPhieuNhap { get; set; }
 
-        public int? SoLuong { get; set; }
+        public int? Soluong { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal? ThanhTien { get; set; }
+        public decimal? DonGia { get; set; }
+
+        public DateTime? NgayNhan { get; set; }
 
         public bool? STATUS { get; set; }
 
-        public virtual HoaDon HoaDon { get; set; }
+        public virtual MatHang MatHang { get; set; }
 
-        public virtual MonAn MonAn { get; set; }
+        public virtual PhieuNhap PhieuNhap { get; set; }
     }
 }

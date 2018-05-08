@@ -8,10 +8,10 @@ using PagedList;
 
 namespace Model.Dao
 {
-   public class NhanVienDao
+   public class TaikhoanDao
     {
         QuanLiNhaHangDbContext db = null;
-        public NhanVienDao()
+        public TaikhoanDao()
         {
             db = new QuanLiNhaHangDbContext();
         }
@@ -20,23 +20,23 @@ namespace Model.Dao
         {
             return db.ChucVus.ToList();
         }
-        public string Insert(NhanVien nv)
+        public string Insert(TaiKhoan nv)
         {
-            db.NhanViens.Add(nv);
+            db.TaiKhoans.Add(nv);
             db.SaveChanges();
-            return nv.MaNV;
+            return nv.MaTaiKhoan;
         }
 
-        public bool Update(NhanVien nv)
+        public bool Update(TaiKhoan nv)
         {
             try
             {
-                var tempt = db.NhanViens.Find(nv.MaNV);
-                tempt.TenNV = nv.TenNV;
+                var tempt = db.TaiKhoans.Find(nv.MaTaiKhoan);
+                tempt.HoTen = nv.HoTen;
                 tempt.MaChucVu = nv.MaChucVu;
-                tempt.Sdt = nv.Sdt;
-                tempt.DiaChi = nv.DiaChi;
-                tempt.Status = nv.Status;
+                tempt.MatKhau = nv.MatKhau;
+                tempt.NgayTao = nv.NgayTao;
+                tempt.STATUS = nv.STATUS;
                 db.SaveChanges();
                 return true;
 
@@ -51,8 +51,8 @@ namespace Model.Dao
         {
             try
             {
-                var tempt = db.NhanViens.Find(MaNV);
-                tempt.Status = false;
+                var tempt = db.TaiKhoans.Find(MaNV);
+                tempt.STATUS = false;
                 db.SaveChanges();
                 return true;
 
@@ -63,12 +63,12 @@ namespace Model.Dao
             }
         }
 
-        public IEnumerable<NhanVien> ListAllPaging(string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime>  ngay, Nullable<int> Stt ,int page, int pagesize )
+        public IEnumerable<TaiKhoan> ListAllPaging(string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime>  ngay, Nullable<int> Stt ,int page, int pagesize )
         {
-            IQueryable<NhanVien> model = db.NhanViens;
+            IQueryable<TaiKhoan> model = db.TaiKhoans;
             if(!string.IsNullOrEmpty(TenNV))
             {
-                model = model.Where(x => x.MaNV.Contains(TenNV) || x.TenNV.Contains(TenNV));
+                model = model.Where(x => x.MaTaiKhoan.Contains(TenNV) || x.HoTen.Contains(TenNV));
             }
             if (!string.IsNullOrEmpty(MaCV))
             {
@@ -76,17 +76,17 @@ namespace Model.Dao
             }
             if (Stt == 1 || Stt != 0)
             {
-                model = model.Where(x => x.Status == true);
+                model = model.Where(x => x.STATUS == true);
             }
-            else model = model.Where(x => x.Status == false);
-            if (!string.IsNullOrEmpty(DiaChi))
-            {
-                model = model.Where(x => x.DiaChi.Contains(DiaChi));
-            }
-            if (!string.IsNullOrEmpty(Sdt))
-            {
-                model = model.Where(x => x.Sdt.Contains(Sdt));
-            }
+            else model = model.Where(x => x.STATUS == false);
+            //if (!string.IsNullOrEmpty(DiaChi))
+            //{
+            //    model = model.Where(x => x.DiaChi.Contains(DiaChi));
+            //}
+            //if (!string.IsNullOrEmpty(Sdt))
+            //{
+            //    model = model.Where(x => x.Sdt.Contains(Sdt));
+            //}
 
 
             if (ngay != null)
@@ -98,20 +98,20 @@ namespace Model.Dao
         }
 
 
-        public NhanVien GetByID(string MaNV)
+        public TaiKhoan GetByID(string MaNV)
         {
-            return db.NhanViens.SingleOrDefault(x => x.MaNV == MaNV);
+            return db.TaiKhoans.SingleOrDefault(x => x.MaTaiKhoan == MaNV);
         }
 
         public int Login (string userName, string passWord)
         {
-            var result = db.NhanViens.SingleOrDefault(x => x.MaNV == userName);
+            var result = db.TaiKhoans.SingleOrDefault(x => x.MaTaiKhoan == userName);
             if (result == null)
 
                 return 0;
             else
             {
-                if (result.Status == false) return -1;
+                if (result.STATUS == false) return -1;
                 else if (result.MatKhau == passWord)
                     return 1;
                 else
@@ -123,8 +123,8 @@ namespace Model.Dao
         {
             try
             {
-                var nv = db.NhanViens.Find(MaNV);
-                db.NhanViens.Remove(nv);
+                var nv = db.TaiKhoans.Find(MaNV);
+                db.TaiKhoans.Remove(nv);
                 db.SaveChanges();
                 return true;
             }
