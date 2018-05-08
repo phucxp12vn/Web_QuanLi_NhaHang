@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -21,29 +21,25 @@ namespace Model.EF
 
         [Required]
         [StringLength(50)]
-        public string NVLap { get; set; }
+        public string TKLap { get; set; }
 
         [Required]
         [StringLength(50)]
         public string MaBan { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string MaGiamGia { get; set; }
+        public DateTime? NgayLap { get; set; }
 
-        public DateTime NgayLap { get; set; }
+        public TimeSpan? GioVao { get; set; }
 
-        public TimeSpan GioVao { get; set; }
+        public TimeSpan? GioThanhToan { get; set; }
 
-        public TimeSpan GioThanhToan { get; set; }
+        public bool? STATUS { get; set; }
 
         public virtual Ban Ban { get; set; }
-
-        public virtual GiamGia GiamGia { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
 
-        public virtual NhanVien NhanVien { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

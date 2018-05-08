@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -6,39 +6,39 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("MatHang")]
-    public partial class MatHang
+    [Table("MonAn")]
+    public partial class MonAn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MatHang()
+        public MonAn()
         {
-            ChiTietPhieuNhaps = new HashSet<ChiTietPhieuNhap>();
+            ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
             ThanhPhans = new HashSet<ThanhPhan>();
         }
 
         [Key]
         [StringLength(50)]
-        public string MaMatHang { get; set; }
+        public string MaMonAn { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string MaDVT { get; set; }
+        public string MaNhomMon { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public string TenMatHang { get; set; }
-
-        public int SoLuongCon { get; set; }
+        [StringLength(50)]
+        public string TenMon { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal GiaNhap { get; set; }
+        public decimal? Gia { get; set; }
 
-        public DateTime HanSuDung { get; set; }
+        [StringLength(200)]
+        public string IMG { get; set; }
 
-        public virtual DonViTinh DonViTinh { get; set; }
+        public bool? STATUS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
+        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+
+        public virtual NhomMonAn NhomMonAn { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThanhPhan> ThanhPhans { get; set; }

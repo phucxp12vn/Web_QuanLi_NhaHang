@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Data.Entity;
@@ -13,21 +13,18 @@ namespace Model.EF
         }
 
         public virtual DbSet<Ban> Bans { get; set; }
+        public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         public virtual DbSet<ChucVu> ChucVus { get; set; }
         public virtual DbSet<DonViTinh> DonViTinhs { get; set; }
-        public virtual DbSet<GiamGia> GiamGias { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KhuVuc> KhuVucs { get; set; }
-        public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
         public virtual DbSet<MatHang> MatHangs { get; set; }
-        public virtual DbSet<MonAN> MonANs { get; set; }
+        public virtual DbSet<MonAn> MonAns { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
-        public virtual DbSet<NhanVien> NhanViens { get; set; }
-        public virtual DbSet<NhomMonAN> NhomMonANs { get; set; }
+        public virtual DbSet<NhomMonAn> NhomMonAns { get; set; }
         public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
-        public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual DbSet<ChiTietKhuyenMai> ChiTietKhuyenMais { get; set; }
-        public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhPhan> ThanhPhans { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -45,16 +42,36 @@ namespace Model.EF
                 .WithRequired(e => e.Ban)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ChiTietHoaDon>()
+                .Property(e => e.MaHD)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ChiTietHoaDon>()
+                .Property(e => e.MaMonAn)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ChiTietHoaDon>()
+                .Property(e => e.ThanhTien)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<ChiTietPhieuNhap>()
+                .Property(e => e.MaMatHang)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ChiTietPhieuNhap>()
+                .Property(e => e.MaPhieuNhap)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ChiTietPhieuNhap>()
+                .Property(e => e.DonGia)
+                .HasPrecision(19, 4);
+
             modelBuilder.Entity<ChucVu>()
                 .Property(e => e.MaChucVu)
                 .IsUnicode(false);
 
             modelBuilder.Entity<ChucVu>()
-                .Property(e => e.MucLuong)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<ChucVu>()
-                .HasMany(e => e.NhanViens)
+                .HasMany(e => e.TaiKhoans)
                 .WithRequired(e => e.ChucVu)
                 .WillCascadeOnDelete(false);
 
@@ -67,29 +84,16 @@ namespace Model.EF
                 .WithRequired(e => e.DonViTinh)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<GiamGia>()
-                .Property(e => e.MaGiamGia)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<GiamGia>()
-                .HasMany(e => e.HoaDons)
-                .WithRequired(e => e.GiamGia)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<HoaDon>()
                 .Property(e => e.MaHD)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
-                .Property(e => e.NVLap)
+                .Property(e => e.TKLap)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
                 .Property(e => e.MaBan)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .Property(e => e.MaGiamGia)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
@@ -106,21 +110,16 @@ namespace Model.EF
                 .WithRequired(e => e.KhuVuc)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<KhuyenMai>()
-                .Property(e => e.MaKhuyenMai)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<KhuyenMai>()
-                .HasMany(e => e.ChiTietKhuyenMais)
-                .WithRequired(e => e.KhuyenMai)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<MatHang>()
                 .Property(e => e.MaMatHang)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MatHang>()
                 .Property(e => e.MaDVT)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MatHang>()
+                .Property(e => e.MaNCC)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MatHang>()
@@ -137,31 +136,30 @@ namespace Model.EF
                 .WithRequired(e => e.MatHang)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<MonAN>()
+            modelBuilder.Entity<MonAn>()
                 .Property(e => e.MaMonAn)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MonAN>()
+            modelBuilder.Entity<MonAn>()
                 .Property(e => e.MaNhomMon)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MonAN>()
+            modelBuilder.Entity<MonAn>()
                 .Property(e => e.Gia)
                 .HasPrecision(19, 4);
 
-            modelBuilder.Entity<MonAN>()
+            modelBuilder.Entity<MonAn>()
+                .Property(e => e.IMG)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MonAn>()
                 .HasMany(e => e.ChiTietHoaDons)
-                .WithRequired(e => e.MonAN)
+                .WithRequired(e => e.MonAn)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<MonAN>()
-                .HasMany(e => e.ChiTietKhuyenMais)
-                .WithRequired(e => e.MonAN)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<MonAN>()
+            modelBuilder.Entity<MonAn>()
                 .HasMany(e => e.ThanhPhans)
-                .WithRequired(e => e.MonAN)
+                .WithRequired(e => e.MonAn)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NhaCungCap>()
@@ -173,40 +171,17 @@ namespace Model.EF
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<NhaCungCap>()
-                .HasMany(e => e.PhieuNhaps)
+                .HasMany(e => e.MatHangs)
                 .WithRequired(e => e.NhaCungCap)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.MaChucVu)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.Sdt)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .HasMany(e => e.HoaDons)
-                .WithRequired(e => e.NhanVien)
-                .HasForeignKey(e => e.NVLap)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .HasMany(e => e.PhieuNhaps)
-                .WithRequired(e => e.NhanVien)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<NhomMonAN>()
+            modelBuilder.Entity<NhomMonAn>()
                 .Property(e => e.MaNhomMon)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<NhomMonAN>()
-                .HasMany(e => e.MonANs)
-                .WithRequired(e => e.NhomMonAN)
+            modelBuilder.Entity<NhomMonAn>()
+                .HasMany(e => e.MonAns)
+                .WithRequired(e => e.NhomMonAn)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PhieuNhap>()
@@ -214,11 +189,7 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<PhieuNhap>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<PhieuNhap>()
-                .Property(e => e.MaNCC)
+                .Property(e => e.MaTaiKhoan)
                 .IsUnicode(false);
 
             modelBuilder.Entity<PhieuNhap>()
@@ -226,41 +197,32 @@ namespace Model.EF
                 .WithRequired(e => e.PhieuNhap)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ChiTietHoaDon>()
-                .Property(e => e.MaHD)
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.MaTaiKhoan)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ChiTietHoaDon>()
-                .Property(e => e.MaMonAn)
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.MaChucVu)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ChiTietHoaDon>()
-                .Property(e => e.DonGia)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<ChiTietHoaDon>()
-                .Property(e => e.KhuyenMai)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<ChiTietKhuyenMai>()
-                .Property(e => e.MaMonAn)
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.MatKhau)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ChiTietKhuyenMai>()
-                .Property(e => e.MaKhuyenMai)
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.ATM)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<ChiTietPhieuNhap>()
-                .Property(e => e.MaMatHang)
-                .IsUnicode(false);
+            modelBuilder.Entity<TaiKhoan>()
+                .HasMany(e => e.HoaDons)
+                .WithRequired(e => e.TaiKhoan)
+                .HasForeignKey(e => e.TKLap)
+                .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ChiTietPhieuNhap>()
-                .Property(e => e.MaPhieuNhap)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ChiTietPhieuNhap>()
-                .Property(e => e.DonGia)
-                .HasPrecision(19, 4);
+            modelBuilder.Entity<TaiKhoan>()
+                .HasMany(e => e.PhieuNhaps)
+                .WithRequired(e => e.TaiKhoan)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ThanhPhan>()
                 .Property(e => e.MaMonAn)

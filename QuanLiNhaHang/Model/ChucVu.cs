@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -6,28 +6,26 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("KhuyenMai")]
-    public partial class KhuyenMai
+    [Table("ChucVu")]
+    public partial class ChucVu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KhuyenMai()
+        public ChucVu()
         {
-            ChiTietKhuyenMais = new HashSet<ChiTietKhuyenMai>();
+            TaiKhoans = new HashSet<TaiKhoan>();
         }
 
         [Key]
         [StringLength(50)]
-        public string MaKhuyenMai { get; set; }
+        public string MaChucVu { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string TenKhuyenMai { get; set; }
+        [StringLength(50)]
+        public string TenChucVu { get; set; }
 
-        public DateTime NgayBatDau { get; set; }
-
-        public DateTime NgayKetThuc { get; set; }
+        public bool? STATUS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietKhuyenMai> ChiTietKhuyenMais { get; set; }
+        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -6,8 +6,8 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ChiTietKhuyenMai")]
-    public partial class ChiTietKhuyenMai
+    [Table("ThanhPhan")]
+    public partial class ThanhPhan
     {
         [Key]
         [Column(Order = 0)]
@@ -17,15 +17,17 @@ namespace Model.EF
         [Key]
         [Column(Order = 1)]
         [StringLength(50)]
-        public string MaKhuyenMai { get; set; }
+        public string MaMatHang { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int PhanTram { get; set; }
+        public int? SoLuong { get; set; }
 
-        public virtual KhuyenMai KhuyenMai { get; set; }
+        [StringLength(200)]
+        public string GhiChu { get; set; }
 
-        public virtual MonAN MonAN { get; set; }
+        public bool? STATUS { get; set; }
+
+        public virtual MatHang MatHang { get; set; }
+
+        public virtual MonAn MonAn { get; set; }
     }
 }

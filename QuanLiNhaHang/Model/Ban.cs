@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +23,9 @@ namespace Model.EF
         [StringLength(50)]
         public string MaKhu { get; set; }
 
-        public int SoGhe { get; set; }
+        public int? SoGhe { get; set; }
+
+        public bool? STATUS { get; set; }
 
         public virtual KhuVuc KhuVuc { get; set; }
 

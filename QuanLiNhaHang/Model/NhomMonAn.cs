@@ -1,4 +1,4 @@
-namespace Model.EF
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -6,22 +6,25 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("GiamGia")]
-    public partial class GiamGia
+    [Table("NhomMonAn")]
+    public partial class NhomMonAn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GiamGia()
+        public NhomMonAn()
         {
-            HoaDons = new HashSet<HoaDon>();
+            MonAns = new HashSet<MonAn>();
         }
 
         [Key]
         [StringLength(50)]
-        public string MaGiamGia { get; set; }
+        public string MaNhomMon { get; set; }
 
-        public int PhanTramGiam { get; set; }
+        [StringLength(50)]
+        public string TenNhomMon { get; set; }
+
+        public bool? STATUS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<MonAn> MonAns { get; set; }
     }
 }
