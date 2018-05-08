@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
+using Model.ViewModel;
 using PagedList;
 
 namespace Model.Dao
@@ -15,7 +16,21 @@ namespace Model.Dao
         {
             db = new QuanLiNhaHangDbContext();
         }
-
+        public List<NhanVienView> NhanvienInfo(string manv)
+        {
+            var model = (from a in db.TaiKhoans
+                         join b in db.ChucVus 
+                         on a.MaChucVu equals b.MaChucVu
+                         where a.MaTaiKhoan.Contains(manv)
+                         select new NhanVienView()
+                         {
+                             MaTaiKhoan = a.MaTaiKhoan,
+                             HoTen=a.HoTen,
+                             TenChucVu=b.TenChucVu,
+                             Ngaytao=a.NgayTao
+                         });
+            return model.ToList();
+        }
         public List<ChucVu> ListAll()
         {
             return db.ChucVus.ToList();
@@ -26,7 +41,7 @@ namespace Model.Dao
             db.SaveChanges();
             return nv.MaTaiKhoan;
         }
-
+        //public List<>
         public bool Update(TaiKhoan nv)
         {
             try
