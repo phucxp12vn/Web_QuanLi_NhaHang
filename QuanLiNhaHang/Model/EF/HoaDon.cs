@@ -21,7 +21,7 @@ namespace Model.EF
 
         [Required]
         [StringLength(50)]
-        public string TKLap { get; set; }
+        public string MaTaiKhoan { get; set; }
 
         [Required]
         [StringLength(50)]

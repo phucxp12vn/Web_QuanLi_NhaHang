@@ -203,6 +203,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Employee\Common\EmployeeConstant.cs" />
+    <Compile Include="Areas\Employee\Common\HoaDonSave.cs" />
     <Compile Include="Areas\Employee\Controllers\HomeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Manager\Controllers\demoController.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HoadonModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -4560,6 +4563,8 @@
     <Content Include="Areas\Employee\vendors\validator\README.md" />
     <Content Include="Areas\Employee\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Employee\Views\Home\Info.cshtml" />
+    <Content Include="Areas\Employee\Views\Home\Hoadon.cshtml" />
+    <Content Include="Areas\Employee\Views\Home\Chitiethoadon.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

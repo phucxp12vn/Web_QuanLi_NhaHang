@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\HoaDonDao.cs" />
     <Compile Include="Dao\TaiKhoanDao.cs" />
     <Compile Include="EF\Ban.cs" />
     <Compile Include="EF\ChiTietHoaDon.cs" />

@@ -89,7 +89,7 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
-                .Property(e => e.TKLap)
+                .Property(e => e.MaTaiKhoan)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
@@ -216,7 +216,6 @@ namespace Model.EF
             modelBuilder.Entity<TaiKhoan>()
                 .HasMany(e => e.HoaDons)
                 .WithRequired(e => e.TaiKhoan)
-                .HasForeignKey(e => e.TKLap)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaiKhoan>()
