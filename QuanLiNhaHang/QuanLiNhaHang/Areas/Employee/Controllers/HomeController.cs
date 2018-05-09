@@ -31,6 +31,27 @@ namespace QuanLiNhaHang.Areas.Employee.Controllers
         {
             return View();
         }
+        public ActionResult TaoChitiethoadon(ChitiethoadonModel ct)
+        {
+            var model = (HoaDonSave)Session[Common.EmployeeConstant.mahd];
+            var s = model.mahd;
+            if(ModelState!=null)
+            {
+                var model1 = new ChitiethoadonDao();
+                var model2 = new ChiTietHoaDon();
+                model2.MaHD = s;
+                model2.MaMonAn = ct.MaMonAn;
+                model2.SoLuong = ct.soluong;
+                var x=model1.timdongia(ct.MaMonAn);
+                model2.ThanhTien = (decimal)x*ct.soluong;
+                var result = model1.insert(model2);
+                if(result!=null)
+                {
+                    return RedirectToAction("Chitiethoadon", "Home", "Employee");
+                }
+            }
+            return View();
+        }
         public ActionResult Hoadon()
         {
             var model = (UserLogin)Session[CommonContants.TaiKhoan_SESSION];
@@ -60,7 +81,6 @@ namespace QuanLiNhaHang.Areas.Employee.Controllers
                     hd1.MaBan = hd.MaBan;
                     hd1.MaHD = hd.MaHoaDon;
                     hd1.MaTaiKhoan = hd.MaNhanVien;
-                    IFormatProvider mFomatter = new System.Globalization.CultureInfo("en-US");
                     hd1.NgayLap = DateTime.Now;
                     hd1.GioVao = hd.GioVao;
                     hd1.GioThanhToan = hd.GioThanhToan;

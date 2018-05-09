@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\ChitiethoadonDao.cs" />
     <Compile Include="Dao\HoaDonDao.cs" />
     <Compile Include="Dao\TaiKhoanDao.cs" />
     <Compile Include="EF\Ban.cs" />
@@ -86,6 +87,7 @@
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
