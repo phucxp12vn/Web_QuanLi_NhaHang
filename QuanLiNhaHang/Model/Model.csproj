@@ -78,6 +78,7 @@
     <Compile Include="EF\TaiKhoan.cs" />
     <Compile Include="EF\ThanhPhan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ChitiethoadonView.cs" />
     <Compile Include="ViewModel\NhanVienView.cs" />
   </ItemGroup>
   <ItemGroup>

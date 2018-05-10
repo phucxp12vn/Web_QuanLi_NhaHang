@@ -35,22 +35,34 @@ namespace QuanLiNhaHang.Areas.Employee.Controllers
         {
             var model = (HoaDonSave)Session[Common.EmployeeConstant.mahd];
             var s = model.mahd;
-            if(ModelState!=null)
+            if(ModelState.IsValid)
             {
                 var model1 = new ChitiethoadonDao();
                 var model2 = new ChiTietHoaDon();
                 model2.MaHD = s;
                 model2.MaMonAn = ct.MaMonAn;
                 model2.SoLuong = ct.soluong;
-                var x=model1.timdongia(ct.MaMonAn);
-                model2.ThanhTien = (decimal)x*ct.soluong;
-                var result = model1.insert(model2);
-                if(result!=null)
+                if (model2.MaMonAn == null)
                 {
-                    return RedirectToAction("Chitiethoadon", "Home", "Employee");
+                    ModelState.AddModelError("", "Mời nhập mã món ăn");
                 }
+                else if (model2.SoLuong == null)
+                {
+                    ModelState.AddModelError("", "mời nhập số lượng món");
+                }
+                else
+                {
+                    var x = model1.timdongia(ct.MaMonAn);
+                    model2.ThanhTien = (decimal)x * ct.soluong;
+                    var result = model1.insert(model2);
+                    if (result != null)
+                    {
+                        return RedirectToAction("Chitiethoadon", "Home", "Employee");
+                    }
+                }
+                
             }
-            return View();
+            return RedirectToAction("Chitiethoadon", "Home", "Employee");
         }
         public ActionResult Hoadon()
         {
@@ -66,6 +78,20 @@ namespace QuanLiNhaHang.Areas.Employee.Controllers
             }
             return View("~/View/Login/Index.cshtml");
         }
+        public ActionResult XuatHoaDon()
+        {
+            decimal? sum = 0;
+            var model1 = new ChitiethoadonDao();
+            var hd = (HoaDonSave)Session[Common.EmployeeConstant.mahd];
+            var model=model1.chitiethoadonview(hd.mahd);
+            foreach(var item in model)
+            {
+                sum = sum + item.thanhtien;
+            }
+            ViewBag.tongtien = sum;
+            ViewBag.mahd = hd.mahd;
+            return View(model);
+        }
         public ActionResult TaoHoadon(HoadonModel hd)
         {
             
@@ -74,7 +100,7 @@ namespace QuanLiNhaHang.Areas.Employee.Controllers
             var user = model.MaTaiKhoan;
             if (cv == "CV03")
             {
-                if (ModelState != null)
+                if (ModelState.IsValid)
                 {
                     var result = new HoaDonDao();
                     var hd1 = new HoaDon();
