@@ -14,7 +14,7 @@ namespace QuanLiNhaHang.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            Session[CommonContants.NHANVIEN_SESSION] = null;
+            Session[CommonContants.TaiKhoan_SESSION] = null;
 
             return View();
         }
@@ -23,19 +23,19 @@ namespace QuanLiNhaHang.Controllers
         {
             if(ModelState.IsValid)
             {
-                var dao = new NhanVienDao();
-                var result = dao.Login(model.MaNV, model.Password);
+                var dao = new TaiKhoanDao();
+                var result = dao.Login(model.MaTaiKhoan, model.Password);
                 if (result == 1 )
                 {
-                    var nv = dao.GetByID(model.MaNV);
+                    var nv = dao.GetByID(model.MaTaiKhoan);
                     var nvSession = new UserLogin();
-                    nvSession.MaNV = nv.MaNV;
-                    nvSession.TenNV = nv.TenNV;
-                    nvSession.MaCV = nv.MaChucVu;
-                    Session.Add(CommonContants.NHANVIEN_SESSION, nvSession);
-                    if (nv.MaChucVu == "QL")
+                    nvSession.MaTaiKhoan = nv.MaTaiKhoan;
+                    nvSession.Hoten = nv.HoTen;
+                    nvSession.MaChucVu = nv.MaChucVu;
+                    Session.Add(CommonContants.TaiKhoan_SESSION, nvSession);
+                    if (nv.MaChucVu == "CV02")
                     return RedirectToAction("Index", "Manager/Home");
-                    else
+                    else if(nv.MaChucVu=="CV03")
                     return RedirectToAction("Index", "Employee/Home");
                 }
                 else if(result == 0)

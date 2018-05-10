@@ -21,6 +21,8 @@ namespace Model.EF
 
         public int SoGhe { get; set; }
 
+        public bool? STATUS { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ban> Bans { get; set; }
     }

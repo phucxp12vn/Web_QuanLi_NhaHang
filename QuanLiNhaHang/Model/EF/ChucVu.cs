@@ -12,7 +12,7 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChucVu()
         {
-            NhanViens = new HashSet<NhanVien>();
+            TaiKhoans = new HashSet<TaiKhoan>();
         }
 
         [Key]
@@ -23,10 +23,9 @@ namespace Model.EF
         [StringLength(50)]
         public string TenChucVu { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal MucLuong { get; set; }
+        public bool? STATUS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhanVien> NhanViens { get; set; }
+        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
     }
 }

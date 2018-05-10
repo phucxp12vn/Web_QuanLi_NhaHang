@@ -19,21 +19,15 @@ namespace Model.EF
         [StringLength(50)]
         public string MaMonAn { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int SoLuong { get; set; }
+        public int? SoLuong { get; set; }
 
-        [Key]
-        [Column(Order = 3, TypeName = "money")]
-        public decimal DonGia { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? ThanhTien { get; set; }
 
-        [Key]
-        [Column(Order = 4, TypeName = "money")]
-        public decimal KhuyenMai { get; set; }
+        public bool? STATUS { get; set; }
 
         public virtual HoaDon HoaDon { get; set; }
 
-        public virtual MonAN MonAN { get; set; }
+        public virtual MonAn MonAn { get; set; }
     }
 }

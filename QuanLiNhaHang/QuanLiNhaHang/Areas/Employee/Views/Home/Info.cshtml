@@ -1,0 +1,56 @@
+﻿@model List<Model.ViewModel.NhanVienView>
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Areas/Employee/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <form class="form-horizontal form-label-left" novalidate>
+                    <span class="section">Thông tin cá nhân</span>
+                    @foreach (var item in Model)
+                    {
+                        <div class="item form-group">
+                            <label style="text-align:left" class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                Mã nhân viên:
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input readonly id="manv" value="@item.MaTaiKhoan" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="manv" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label style="text-align:left" class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
+                                Tên nhân viên:
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input readonly id="hoten" value="@item.HoTen" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="hoten" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label style="text-align:left" class="control-label col-md-3 col-sm-3 col-xs-12" for="number">
+                                Chức vụ:
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input readonly id="chucvu" value="@item.TenChucVu" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="chucvu" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label style="text-align:left" class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">
+                                Ngày tạo:
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input readonly id="ngaytao" value="@item.Ngaytao" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="ngaytao" type="text">
+                            </div>
+                        </div>
+                    }
+                    <div class="ln_solid"></div>
+                    <p style="text-align:right">@DateTime.Now.ToString("dd-MM-yyyy")</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

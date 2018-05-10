@@ -59,29 +59,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Dao\MatHangDao.cs" />
     <Compile Include="Dao\MonAnDao.cs" />
     <Compile Include="Dao\NhanVienDao.cs" />
     <Compile Include="Dao\PhieuNhapDao.cs" />
+=======
+    <Compile Include="Dao\ChitiethoadonDao.cs" />
+    <Compile Include="Dao\HoaDonDao.cs" />
+    <Compile Include="Dao\TaiKhoanDao.cs" />
+>>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
     <Compile Include="EF\Ban.cs" />
     <Compile Include="EF\ChiTietHoaDon.cs" />
-    <Compile Include="EF\ChiTietKhuyenMai.cs" />
     <Compile Include="EF\ChiTietPhieuNhap.cs" />
     <Compile Include="EF\ChucVu.cs" />
     <Compile Include="EF\DonViTinh.cs" />
-    <Compile Include="EF\GiamGia.cs" />
     <Compile Include="EF\HoaDon.cs" />
     <Compile Include="EF\KhuVuc.cs" />
-    <Compile Include="EF\KhuyenMai.cs" />
     <Compile Include="EF\MatHang.cs" />
-    <Compile Include="EF\MonAN.cs" />
+    <Compile Include="EF\MonAn.cs" />
     <Compile Include="EF\NhaCungCap.cs" />
-    <Compile Include="EF\NhanVien.cs" />
-    <Compile Include="EF\NhomMonAN.cs" />
+    <Compile Include="EF\NhomMonAn.cs" />
     <Compile Include="EF\PhieuNhap.cs" />
     <Compile Include="EF\QuanLiNhaHangDbContext.cs" />
+    <Compile Include="EF\TaiKhoan.cs" />
     <Compile Include="EF\ThanhPhan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ChitiethoadonView.cs" />
+    <Compile Include="ViewModel\NhanVienView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -90,6 +95,7 @@
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

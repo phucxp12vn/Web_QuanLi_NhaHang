@@ -19,9 +19,10 @@ namespace Model.EF
         [StringLength(50)]
         public string MaDVT { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string TenDVT { get; set; }
+
+        public bool? STATUS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MatHang> MatHangs { get; set; }

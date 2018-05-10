@@ -26,3 +26,17 @@ D:\GitHub\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\PagedList.Mvc.xml
 D:\GitHub\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 D:\GitHub\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\obj\Debug\Model.dll
 D:\GitHub\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\obj\Debug\Model.pdb
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\Model.dll.config
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\Model.dll
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\Model.pdb
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\EntityFramework.dll
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\PagedList.dll
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\PagedList.Mvc.dll
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\EntityFramework.xml
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\PagedList.xml
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\bin\Debug\PagedList.Mvc.xml
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\obj\Debug\Model.dll
+E:\GIT\Web_QuanLi_NhaHang\QuanLiNhaHang\Model\obj\Debug\Model.pdb

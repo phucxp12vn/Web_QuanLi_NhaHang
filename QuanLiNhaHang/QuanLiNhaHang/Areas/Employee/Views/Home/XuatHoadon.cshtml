@@ -1,0 +1,50 @@
+﻿@model List<Model.ViewModel.ChitiethoadonView>
+@{
+    ViewBag.Title = "XuatHoadon";
+    Layout = "~/Areas/Employee/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="x_panel">
+
+        <div class="x_title">
+            <h1>Hóa đơn</h1>
+            <h2>Mã hóa đơn: @ViewBag.mahd</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã Món ăn</th>
+                        <th>Tên món ăn</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.mamonan</td>
+                            <td>@item.tenmonan</td>
+                            <td>@item.soluong</td>
+                            <td>@item.thanhtien</td>
+                        </tr>
+
+                    }
+                </tbody>
+
+                    <tr>
+                        <td colspan="3">Tổng tiền:</td>
+                        <td>@ViewBag.tongtien</td>
+                    </tr>
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

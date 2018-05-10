@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿@model QuanLiNhaHang.Areas.Manager.Models.NhanVienModelView
+=======
+﻿@model PagedList.IPagedList<Model.EF.TaiKhoan>
+>>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
@@ -81,6 +85,7 @@
                                         <input type="text" value="@ViewBag.TenTimKiem" name="TenNV" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
+<<<<<<< HEAD
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaCV">
                                         Mã Chức Vụ
@@ -105,6 +110,15 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" value="@ViewBag.Sdt" name="Sdt" class="form-control col-md-7 col-xs-12">
                                     </div>
+=======
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
+                                    Ngày Gia Nhập
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="@ViewBag.Day" name="Ngay" class="form-control col-md-7 col-xs-12">
+>>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
@@ -162,9 +176,13 @@
                                 <th>#</th>
                                 <th>Mã Nhân Viên</th>
                                 <th>Tên Nhân Viên</th>
+<<<<<<< HEAD
                                 <th>Mã Chức Vụ</th>
                                 <th>Địa Chỉ</th>
                                 <th>Số điện thoại</th>
+=======
+                                <th>Mã Chức Vu</th>
+>>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
                                 <th>Ngày gia nhập</th>
 
                             </tr>
@@ -172,22 +190,24 @@
                         <tbody>
                             @foreach (var item in Model.list)
                             {
-                                <tr id="row_@item.MaNV">
+                                <tr id="row_@item.MaTaiKhoan">
                                     <td>
-                                        <a href="/Manager/NhanVien/Edit/@item.MaNV">Sửa ||</a>
-                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaNV }, new AjaxOptions
+                                        <a href="/Manager/NhanVien/Edit/@item.MaTaiKhoan">Sửa ||</a>
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaTaiKhoan }, new AjaxOptions
                                        {
                                            Confirm = "Bạn muốn xóa bản ghi này?",
+<<<<<<< HEAD
                                            OnComplete = "$('#row_" + @item.MaNV + "').remove()",
+=======
+                                           OnComplete = "$('row_" + @item.MaTaiKhoan + "').remove()",
+>>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
                                            HttpMethod = "Delete"
 
                                        })
                                     </td>
-                                    <td>@item.MaNV</td>
-                                    <td>@item.TenNV</td>
+                                    <td>@item.MaTaiKhoan</td>
+                                    <td>@item.HoTen</td>
                                     <td>@item.MaChucVu</td>
-                                    <td>@item.DiaChi</td>
-                                    <td>@item.Sdt</td>
                                     <td>@item.NgayTao</td>
                                 </tr>
 

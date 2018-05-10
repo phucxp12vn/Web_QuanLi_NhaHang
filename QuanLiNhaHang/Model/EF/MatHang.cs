@@ -25,20 +25,27 @@ namespace Model.EF
         public string MaDVT { get; set; }
 
         [Required]
+        [StringLength(50)]
+        public string MaNCC { get; set; }
+
         [StringLength(100)]
         public string TenMatHang { get; set; }
 
-        public int SoLuongCon { get; set; }
+        public int? SoLuongCon { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal GiaNhap { get; set; }
+        public decimal? GiaNhap { get; set; }
 
-        public DateTime HanSuDung { get; set; }
+        public DateTime? HanSuDung { get; set; }
 
-        public virtual DonViTinh DonViTinh { get; set; }
+        public bool? STATUS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
+
+        public virtual DonViTinh DonViTinh { get; set; }
+
+        public virtual NhaCungCap NhaCungCap { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThanhPhan> ThanhPhans { get; set; }

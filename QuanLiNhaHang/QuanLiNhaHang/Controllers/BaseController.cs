@@ -12,7 +12,7 @@ namespace QuanLiNhaHang.Controllers
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            UserLogin session = (UserLogin) Session[CommonContants.NHANVIEN_SESSION];
+            UserLogin session = (UserLogin) Session[CommonContants.TaiKhoan_SESSION];
             if (session == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new
