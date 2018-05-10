@@ -20,6 +20,7 @@ namespace Model.Dao
         {
             return db.ChucVus.ToList();
         }
+
         public string Insert(NhanVien nv)
         {
             db.NhanViens.Add(nv);
@@ -87,8 +88,6 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.Sdt.Contains(Sdt));
             }
-
-
             if (ngay != null)
             {
                 DateTime day = (DateTime)ngay;

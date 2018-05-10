@@ -1,5 +1,7 @@
 ﻿using Model.Dao;
 using Model.EF;
+using PagedList;
+using QuanLiNhaHang.Areas.Manager.Models;
 using QuanLiNhaHang.Common;
 using QuanLiNhaHang.Controllers;
 using System;
@@ -13,16 +15,18 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
     public class NhanVienController : BaseController
     {
         // GET: Manager/NhanVien
-        public ActionResult Index(NhanVien nv,string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime> ngay, Nullable<int> Stt,int page = 1, int pagesize = 10)
+        public ActionResult Index(string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime> ngay, Nullable<int> Stt,int page = 1, int pagesize = 10)
         {
             var dao = new NhanVienDao();
-            var model = dao.ListAllPaging(TenNV, MaCV, DiaChi, Sdt, ngay, Stt, page, pagesize);
+            NhanVienModelView model = new NhanVienModelView();
+            model.list = (IPagedList<NhanVien>)dao.ListAllPaging(TenNV, MaCV, DiaChi, Sdt, ngay, Stt, page, pagesize);
             ViewBag.TenTimKiem = TenNV;
             ViewBag.MaCV = MaCV;
             ViewBag.DiaChi = DiaChi;
             ViewBag.Sdt = Sdt;
             ViewBag.day = ngay;
             ViewBag.Stt = Stt;
+            SetViewBag(MaCV);
             return View(model);
         }
 
@@ -57,11 +61,11 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         }
 
 
-
+        // Drop Down
         public void SetViewBag(string selectedId = null)
         {
             var dao = new NhanVienDao();
-            ViewBag.MaChucVu = new SelectList(dao.ListAll(), "MaChucVu", "TenChucVu", selectedId);
+            ViewBag.MaChucVu = new SelectList(dao.ListAll(), "MaChucVu", "MaChucVu", selectedId);
         }
 
         [HttpGet]
@@ -87,7 +91,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm nhân viên mới không thành công");
+                    ModelState.AddModelError("", "Thay đổi thông tin không thành công");
                 }
             }
             return View("Index");
@@ -97,7 +101,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         public ActionResult Delete(string id)
         {
             new NhanVienDao().Khoa(id);
-            return RedirectToAction("Index","NhanVien");
+            return RedirectToAction("","NhanVien");
         }
 
         [ChildActionOnly]

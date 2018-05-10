@@ -1,0 +1,155 @@
+﻿@model QuanLiNhaHang.Areas.Manager.Models.ChiTietThanhPhan.ThanhPhanModel
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layouts.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gentelella Alela! | </title>
+    <!-- Bootstrap -->
+    <link href="~/Areas/Manager/Assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Areas/Manager/Assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Areas/Manager/Assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Areas/Manager/Assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Areas/Manager/Assets/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="form-horizontal form" novalidate>
+                        @using (Html.BeginForm("Detail", "MonAn", FormMethod.Get))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_content">
+                                            <br />
+                                            <div id="demo-form2" class="form-horizontal form-label-left">
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ma-Mon-An">
+                                                        Mã Món Ăn<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        @Html.TextBoxFor(model => model.MonAN.MaMonAn, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.MonAN.MaMonAn, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ten-Mon">
+                                                        Tên Món Ăn <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        @Html.TextBoxFor(model => model.MonAN.TenMon, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.MonAN.TenMon, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ma-Nhom-Mon">
+                                                        Mã Nhóm Món <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        @Html.TextBoxFor(model => model.MonAN.MaNhomMon, null, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.MonAN.MaNhomMon, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Gia">
+                                                        Giá<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        @Html.TextBoxFor(model => model.MonAN.Gia, null, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.MonAN.Gia, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <a href="/Manager/MonAn/Edit/@Model.MonAN.MaMonAn"><input type="button" value="Sửa đổi" class="btn btn-success"></a>
+                                    <a href="/Manager/MonAn/Index"><input type="button" value="Quay lại Danh Sách" class="btn btn-success"></a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <h2>Danh sách nguyên liệu</h2>
+                <a href="/Manager/MonAn/Add/@Model.MonAN.MaMonAn"><input type="button" value="Thêm mới" class="btn btn-success navbar-right"></a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã Mặt Hàng</th>
+                            <th>Số lượng</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.list)
+                        {
+                            <tr id="row_@item.MaMatHang">
+                                <td>
+                                    <a href="/Manager/MonAn/EditDetail?MaMonAn=@item.MaMonAn&MaMatHang=@item.MaMatHang">Sửa ||</a>
+                                    @Ajax.ActionLink("Xóa", "DeleteDetail", new {@MaMonAn = item.MaMonAn, @MaMatHang = item.MaMatHang }, new AjaxOptions
+                               {
+                                   Confirm = "Bạn muốn xóa bản ghi này?",
+                                   OnComplete = "$('#row_" + @item.MaMatHang + "').remove()",
+                                   HttpMethod = "Delete"
+
+                               })
+                                </td>
+                                <td>@item.MaMatHang</td>
+                                <td>@item.SoLuong</td>
+                                <td>@item.GhiChu</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model.list, Page => Url.Action("Detail", new { Page, @TenTimKiem = ViewBag.TenTimKiem }))
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html>

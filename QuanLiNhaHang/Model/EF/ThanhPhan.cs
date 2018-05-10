@@ -19,7 +19,6 @@ namespace Model.EF
         [StringLength(50)]
         public string MaMatHang { get; set; }
 
-        [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoLuong { get; set; }

@@ -1,0 +1,86 @@
+﻿@model Model.EF.PhieuNhap
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layouts.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm("Edit", "PhieuNhap", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <br />
+                        <div id="demo-form2" class="form-horizontal form-label-left">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ma-Nhan-Vien">
+                                    Mã Phiếu Nhập<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model.MaPhieuNhap, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.MaPhieuNhap, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ma-NV">
+                                    Mã Nhân Viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model.MaNV, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ma-NCC">
+                                   Mã Nhà Cung Cấp<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(model => model.MaNCC, null, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="NgayLap">
+                                    Ngày Lập<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model.NgayLapPhieu, null, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.ValidationMessageFor(model => model.NgayLapPhieu, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <input type="submit" value="Cập nhật" class="btn btn-success" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</body>
+</html>

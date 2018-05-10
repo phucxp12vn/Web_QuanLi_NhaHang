@@ -11,12 +11,13 @@ namespace QuanLiNhaHang
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");          
-            routes.MapRoute(
-            "Find",                                              // Route name
-            "{controller}/{action}/{TenNV}/{MaCV}",                           // URL with parameters
-            new { controller = "NhanVien", action = "Index", TenNV = "", MaCV = "", DiaChi = "", Sdt = "", Ngay = "", Stt = "" }  // Parameter defaults
-                 );
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //Tim kiem nv          
+            //routes.MapRoute(
+            //"Find",                                              // Route name
+            //"{controller}/{action}/{TenNV}/{MaCV}",                           // URL with parameters
+            //new { controller = "NhanVien", action = "Index", TenNV = "", MaCV = "", DiaChi = "", Sdt = "", Ngay = "", Stt = "" }  // Parameter defaults
+            //     );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

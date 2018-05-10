@@ -1,0 +1,175 @@
+﻿@model QuanLiNhaHang.Areas.Manager.Models.ChiTietThanhPhan.ThanhPhanModel
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layouts.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gentelella Alela! | </title>
+    <!-- Bootstrap -->
+    <link href="~/Areas/Manager/Assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Areas/Manager/Assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Areas/Manager/Assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Areas/Manager/Assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Areas/Manager/Assets/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="form-horizontal form" novalidate>
+                        @using (Html.BeginForm("Index", "MonAn", FormMethod.Get))
+                        {
+                            <form class="login-form">
+                                <div class="x_title">
+                                    <h2>Bảng Tìm Kiếm<small></small></h2>
+
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <p class="message">
+                                            <a href="#"><input type="button" value="Tìm Kiếm Nâng Cao" class="btn btn-info message"></a>
+                                        </p>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TenNV">
+                                        Tên hoặc mã món ăn
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" value="@ViewBag.TenTimKiem" name="TenMonAn" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">TÌM</button>
+                                </div>
+
+                           </form>
+                         <form class="search-form">
+                                <div class="x_title">
+                                    <h2>Bảng Tìm Kiếm Nâng Cao<small></small></h2>
+                                    <ul class="nav navbar-right">
+                                        <p class="message">
+                                            <a href="#">
+                                                <i class="fa fa-undo"></i>
+                                            </a>
+                                        </p>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TenNV">
+                                        Tên hoặc mã món ăn
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" value="@ViewBag.TenTimKiem" name="TenMonAn" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaCV">
+                                        Mã nhóm món ăn
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.DropDownListFor(model => model.MaNhomMon, null, new { @class = "form-control col-md-7 col-xs-12", @name = "MaNhomMon" })
+                                        @Html.ValidationMessageFor(model => model.MaNhomMon, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                             <div class="item form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Gia">
+                                     Thành phần
+                                 </label>
+                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                     @Html.DropDownListFor(model => model.MaMatHang, null, new { @class = "form-control col-md-7 col-xs-12" ,@name ="thanhphan" })
+                                     @Html.ValidationMessageFor(model => model.MaMatHang, "", new { @class = "text-danger" })
+                                 </div>
+                             </div>
+                                                             
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Gia">
+                                        Giá tiền
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" value="@ViewBag.Gia" name="Gia" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">TÌM</button>
+                                </div>
+
+
+
+
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="x_panel">
+
+            <div class="x_title">
+                <h2>Danh sách món ăn</h2>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã Món Ăn</th>
+                            <th>Tên Món Ăn</th>
+                            <th>Mã Nhóm Món Ăn</th>
+                            <th>Giá tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listmonan)
+                        {
+                            <tr id="row_@item.MaMonAn">
+                                <td>
+                                    <a href="/Manager/MonAn/Edit/@item.MaMonAn">Sửa ||</a>
+                                    <a href="/Manager/MonAn/Detail/@item.MaMonAn">Chi Tiết ||</a>
+                                    @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaMonAn }, new AjaxOptions
+                                   {
+                                       Confirm = "Bạn muốn xóa bản ghi này?",
+                                       OnComplete = "$('#row_" + @item.MaMonAn + "').remove()",
+                                       HttpMethod = "Delete"
+
+                                   })
+                                </td>
+                                <td>@item.MaMonAn</td>
+                                <td>@item.TenMon</td>
+                                <td>@item.MaNhomMon</td>
+                                <td>@item.Gia</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model.listmonan, Page => Url.Action("Index", new { Page, @TenTimKiem = ViewBag.TenTimKiem }))
+            </div>
+        </div>
+    </div>
+</body>
+</html>
