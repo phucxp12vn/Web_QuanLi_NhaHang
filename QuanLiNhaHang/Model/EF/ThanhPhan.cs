@@ -19,13 +19,7 @@ namespace Model.EF
         [StringLength(50)]
         public string MaMatHang { get; set; }
 
-<<<<<<< HEAD
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int SoLuong { get; set; }
-=======
         public int? SoLuong { get; set; }
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
 
         [StringLength(200)]
         public string GhiChu { get; set; }

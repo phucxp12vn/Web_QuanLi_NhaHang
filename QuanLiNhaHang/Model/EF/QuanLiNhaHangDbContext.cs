@@ -24,6 +24,7 @@ namespace Model.EF
         public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
         public virtual DbSet<NhomMonAn> NhomMonAns { get; set; }
         public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhPhan> ThanhPhans { get; set; }
 

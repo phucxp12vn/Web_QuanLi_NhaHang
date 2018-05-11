@@ -14,7 +14,7 @@ namespace QuanLiNhaHang.Areas.Manager.Models.ChiTietThanhPhan
         public string MaNhomMon { get; set; }
 
         public PagedList<ThanhPhan> list { get; set; }
-        public PagedList<MonAN> listmonan { get; set; }
+        public PagedList<MonAn> listmonan { get; set; }
 
     }
 }

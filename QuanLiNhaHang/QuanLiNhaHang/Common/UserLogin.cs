@@ -8,8 +8,8 @@ namespace QuanLiNhaHang.Common
     [Serializable]
     public class UserLogin
     {       
-        public string MaTaiKhoan { set; get; }
-        public string Hoten { set; get; }
-        public string MaChucVu { set; get; }
+        public string MaNV { set; get; }
+        public string TenNV { set; get; }
+        public string MaCV { set; get; }
     }
 }

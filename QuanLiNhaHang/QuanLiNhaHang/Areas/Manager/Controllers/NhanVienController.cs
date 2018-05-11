@@ -15,22 +15,14 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
     public class NhanVienController : BaseController
     {
         // GET: Manager/NhanVien
-<<<<<<< HEAD
-        public ActionResult Index(string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime> ngay, Nullable<int> Stt,int page = 1, int pagesize = 10)
-        {
-            var dao = new NhanVienDao();
-            NhanVienModelView model = new NhanVienModelView();
-            model.list = (IPagedList<NhanVien>)dao.ListAllPaging(TenNV, MaCV, DiaChi, Sdt, ngay, Stt, page, pagesize);
-=======
-        public ActionResult Index(TaiKhoan nv,string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime> ngay, Nullable<int> Stt,int page = 1, int pagesize = 10)
+        public ActionResult Index(string TenNV, string MaCV, string ATM, Nullable<DateTime> ngay, Nullable<int> Stt,int page = 1, int pagesize = 10)
         {
             var dao = new TaiKhoanDao();
-            var model = dao.ListAllPaging(TenNV, MaCV, DiaChi, Sdt, ngay, Stt, page, pagesize);
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
+            TaiKhoanModelView model = new TaiKhoanModelView();
+            model.list = (IPagedList<TaiKhoan>)dao.ListAllPaging(TenNV, MaCV, ATM, ngay, Stt, page, pagesize);
             ViewBag.TenTimKiem = TenNV;
             ViewBag.MaCV = MaCV;
-            ViewBag.DiaChi = DiaChi;
-            ViewBag.Sdt = Sdt;
+            ViewBag.ATM = ATM;
             ViewBag.day = ngay;
             ViewBag.Stt = Stt;
             SetViewBag(MaCV);
@@ -54,6 +46,8 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new TaiKhoanDao();
+                nv.STATUS = true;
+                nv.NgayTao = DateTime.Now;
                 string result = dao.Insert(nv);
                 if (result != null)
                 {
@@ -71,13 +65,8 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         // Drop Down
         public void SetViewBag(string selectedId = null)
         {
-<<<<<<< HEAD
-            var dao = new NhanVienDao();
-            ViewBag.MaChucVu = new SelectList(dao.ListAll(), "MaChucVu", "MaChucVu", selectedId);
-=======
             var dao = new TaiKhoanDao();
-            ViewBag.MaChucVu = new SelectList(dao.ListAll(), "MaChucVu", "TenChucVu", selectedId);
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
+            ViewBag.MaChucVu = new SelectList(dao.ListAll(), "MaChucVu", "MaChucVu", selectedId);
         }
 
         [HttpGet]
@@ -112,19 +101,14 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpDelete]
         public ActionResult Delete(string id)
         {
-<<<<<<< HEAD
-            new NhanVienDao().Khoa(id);
+            new TaiKhoanDao().Lock(id);
             return RedirectToAction("","NhanVien");
-=======
-            new TaiKhoanDao().Khoa(id);
-            return RedirectToAction("Index","NhanVien");
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
         }
 
         [ChildActionOnly]
         public ActionResult _Profile_Info()
         {
-            UserLogin session = (UserLogin)Session[CommonContants.TaiKhoan_SESSION];
+            UserLogin session = (UserLogin)Session[CommonContants.NHANVIEN_SESSION];
             var model = session;
             return PartialView(model);
         }

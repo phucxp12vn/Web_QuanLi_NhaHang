@@ -32,8 +32,8 @@
                                     Mã Món Ăn<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.MaMonAn,new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.MaMonAn, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.MaMonAn,new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.MaMonAn, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -43,8 +43,8 @@
                                     Tên Món Ăn <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.TenMon, new { @class = "form-control col-md-7 col-xs-12" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.TenMon, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.TenMon, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.TenMon, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -54,7 +54,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     @Html.DropDownListFor(model => model.MaNhomMon, null, new { @class = "form-control col-md-7 col-xs-12" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.MaNhomMon, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.MaNhomMon, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -64,8 +64,8 @@
                                    Giá<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.Gia  , null, new { @class = "form-control col-md-7 col-xs-12" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.Gia, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.Gia  , null, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.Gia, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -89,7 +89,7 @@
 
             <div class="x_title">
                 <h2>Danh sách nguyên liệu</h2>
-                <a href="/Manager/MonAn/Add/@Model.MonAN.MaMonAn"><input type="button" value="Thêm mới" class="btn btn-success navbar-right"></a>
+                <a href="/Manager/MonAn/Add/@Model.MonAn.MaMonAn"><input type="button" value="Thêm mới" class="btn btn-success navbar-right"></a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

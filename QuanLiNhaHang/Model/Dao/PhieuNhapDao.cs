@@ -16,14 +16,9 @@ namespace Model.Dao
             db = new QuanLiNhaHangDbContext();
         }
 
-        public List<NhaCungCap> ListAllNCC()
+        public List<TaiKhoan> ListAllNV()
         {
-            return db.NhaCungCaps.ToList();
-        }
-
-        public List<NhanVien> ListAllNV()
-        {
-            return db.NhanViens.ToList();
+            return db.TaiKhoans.ToList();
         }
 
         public string Insert(PhieuNhap phieu)
@@ -34,22 +29,22 @@ namespace Model.Dao
         }
 
 
-        public IEnumerable<PhieuNhap> ListAllPaging(string MaPhieuNhap, string MaNV, string MaNCC, Nullable<DateTime> NgayLap, int page, int pagesize)
+        public IEnumerable<PhieuNhap> ListAllPaging(string MaPhieuNhap, string MaTaiKhoan,  Nullable<DateTime> NgayLap, Nullable<int> Stt, int page, int pagesize)
         {
             IQueryable<PhieuNhap> model = db.PhieuNhaps;
             if (!string.IsNullOrEmpty(MaPhieuNhap))
             {
                 model = model.Where(x => x.MaPhieuNhap.Contains(MaPhieuNhap));
             }
-            if (!string.IsNullOrEmpty(MaNV))
+            if (!string.IsNullOrEmpty(MaTaiKhoan))
             {
-                model = model.Where(x => x.MaNV.Contains(MaNV));
+                model = model.Where(x => x.MaTaiKhoan.Contains(MaTaiKhoan));
             }
-            //if (Stt == 1 || Stt != 0)
-            //{
-            //    model = model.Where(x => x.Status == true);
-            //}
-            //else model = model.Where(x => x.Status == false);
+            if (Stt == 1 || Stt != 0)
+            {
+                model = model.Where(x => x.STATUS == true);
+            }
+            else model = model.Where(x => x.STATUS == false);
             if (NgayLap != null)
             {
                 DateTime day = (DateTime)NgayLap;
@@ -68,8 +63,7 @@ namespace Model.Dao
             try
             {
                 var tempt = db.PhieuNhaps.Find(phieu.MaPhieuNhap);
-                tempt.MaNV= phieu.MaNV;
-                tempt.MaNCC = phieu.MaNCC;
+                tempt.MaTaiKhoan = phieu.MaTaiKhoan;
                 tempt.NgayLapPhieu = phieu.NgayLapPhieu;
                 db.SaveChanges();
                 return true;
@@ -80,14 +74,15 @@ namespace Model.Dao
             }
         }
 
-        public bool Delete(string MaPhieuNhap)
+        public bool Lock(string MaPhieuNhap)
         {
             try
             {
-                var phieu = db.PhieuNhaps.Find(MaPhieuNhap);
-                db.PhieuNhaps.Remove(phieu);
+                var tempt = db.PhieuNhaps.Find(MaPhieuNhap);
+                tempt.STATUS = false;
                 db.SaveChanges();
                 return true;
+
             }
             catch (Exception ex)
             {

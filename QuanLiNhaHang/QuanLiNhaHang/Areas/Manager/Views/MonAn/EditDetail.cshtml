@@ -30,8 +30,8 @@
                                     Mã Món Ăn<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.MaMonAn, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.MaMonAn, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.MaMonAn, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.MaMonAn, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -41,8 +41,8 @@
                                     Tên Món Ăn <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.TenMon, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.TenMon, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.TenMon, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.TenMon, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -51,8 +51,8 @@
                                     Mã Nhóm Món <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.MaNhomMon, null, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.MaNhomMon, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.MaNhomMon, null, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.MaNhomMon, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -62,8 +62,8 @@
                                     Giá<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    @Html.TextBoxFor(model => model.MonAN.Gia, null, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.MonAN.Gia, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(model => model.MonAn.Gia, null, new { @class = "form-control col-md-7 col-xs-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.MonAn.Gia, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <a href="/Manager/MonAn/Edit/@Model.MonAN.MaMonAn"><input type="button" value="Sửa đổi" class="btn btn-success"></a>
+                        <a href="/Manager/MonAn/Edit/@Model.MonAn.MaMonAn"><input type="button" value="Sửa đổi" class="btn btn-success"></a>
                         <a href="/Manager/MonAn/Index"><input type="button" value="Quay lại Danh Sách" class="btn btn-success"></a>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <input type="submit" value="Cập nhật" class="btn btn-success" />
-                                    <a href="/Manager/MonAn/Detail/@Model.MonAN.MaMonAn"><input type="button" value="Quay lại chi tiết" class="btn btn-success"></a>
+                                    <a href="/Manager/MonAn/Detail/@Model.MonAn.MaMonAn"><input type="button" value="Quay lại chi tiết" class="btn btn-success"></a>
                                 </div>
                             </div>
 

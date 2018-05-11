@@ -8,9 +8,8 @@ namespace QuanLiNhaHang.Models
     public class LoginModel
     {
        // [Required(ErrorMessage = "Mời nhập user")]
-        public string MaTaiKhoan { set; get; }
+        public string MaNV { set; get; }
         //[Required(ErrorMessage = "Mời nhập password")]
         public string Password{ set; get; }
-        
     }
 }

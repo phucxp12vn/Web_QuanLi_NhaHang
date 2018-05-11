@@ -17,9 +17,14 @@ namespace Model.Dao
             db = new QuanLiNhaHangDbContext();
         }
 
-        public List<DonViTinh> ListAll()
+        public List<DonViTinh> ListAllMaDVT()
         {
             return db.DonViTinhs.ToList();
+        }
+
+        public List<NhaCungCap> ListAllMaNCC()
+        {
+            return db.NhaCungCaps.ToList();
         }
 
         public string Insert(MatHang hang)
@@ -30,7 +35,7 @@ namespace Model.Dao
         }
 
 
-        public IEnumerable<MatHang> ListAllPaging(string MaMatHang, string MaDVT, Nullable<decimal> Gia, Nullable<int> SLC, int page, int pagesize)
+        public IEnumerable<MatHang> ListAllPaging(string MaMatHang, string MaDVT, string MaNCC, Nullable<decimal> Gia, Nullable<int> SLC, Nullable<int> Stt, int page, int pagesize)
         {
             IQueryable<MatHang> model = db.MatHangs;
             if (!string.IsNullOrEmpty(MaMatHang))
@@ -41,11 +46,15 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.MaDVT.Contains(MaDVT));
             }
-            //if (Stt == 1 || Stt != 0)
-            //{
-            //    model = model.Where(x => x.Status == true);
-            //}
-            //else model = model.Where(x => x.Status == false);
+            if (!string.IsNullOrEmpty(MaNCC))
+            {
+                model = model.Where(x => x.MaNCC.Contains(MaNCC));
+            }
+            if (Stt == 1 || Stt != 0)
+            {
+                model = model.Where(x => x.STATUS == true);
+            }
+            else model = model.Where(x => x.STATUS == false);
             if (!string.IsNullOrEmpty(Gia.ToString()))
             {
                 model = model.Where(x => x.GiaNhap == Gia);
@@ -54,7 +63,7 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.SoLuongCon == SLC);
             }
-            return model.OrderByDescending(x => x.MaMatHang).ToPagedList(page, pagesize);
+            return model.OrderBy(x => x.MaMatHang).ToPagedList(page, pagesize);
         }
 
         public MatHang GetByID(string MaMatHang)

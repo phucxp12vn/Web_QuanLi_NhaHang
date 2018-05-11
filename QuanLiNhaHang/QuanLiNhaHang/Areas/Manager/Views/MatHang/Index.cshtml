@@ -33,7 +33,7 @@
             <div class="x_panel">
                 <div class="x_content">
                     <div class="form-horizontal form" novalidate>
-                        @using (Html.BeginForm("Index", "MonAn", FormMethod.Get))
+                        @using (Html.BeginForm("Index", "MatHang", FormMethod.Get))
                         {
                             <form class="login-form">
                                 <div class="x_title">
@@ -96,6 +96,16 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" value="@ViewBag.GiaNhap" name="GiaNhap" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DVT">
+                                        Mã Nhà Cung Cấp
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.DropDownListFor(model => model.MaNCC, null, new { @class = "form-control col-md-7 col-xs-12", @name = "MaDVT" })
+                                        @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 

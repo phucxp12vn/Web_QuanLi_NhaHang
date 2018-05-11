@@ -7,8 +7,8 @@ using System.Web;
 
 namespace QuanLiNhaHang.Areas.Manager.Models
 {
-    public class NhanVienModelView : NhanVien
+    public class TaiKhoanModelView : TaiKhoan
     {
-        public IPagedList<NhanVien> list { get; set; }
+        public IPagedList<TaiKhoan> list { get; set; }
     }
 }

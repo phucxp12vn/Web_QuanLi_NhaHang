@@ -13,15 +13,14 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
     public class PhieuNhapController : Controller
     {
         // GET: Manager/PhieuNhap
-        public ActionResult Index(string MaPhieuNhap, string MaNV, string MaNCC, Nullable<DateTime> NgayLap, int page = 1, int pagesize = 10)
+        public ActionResult Index(string MaPhieuNhap, string MaTaiKhoan, Nullable<DateTime> NgayLap, Nullable<int> Stt, int page = 1, int pagesize = 10)
         {
             var dao = new PhieuNhapDao();
             PhieuNhapModelView model = new PhieuNhapModelView();
-            model.list = (IPagedList<PhieuNhap>)dao.ListAllPaging(MaPhieuNhap, MaNV, MaNCC, NgayLap, page, pagesize);
+            model.list = (IPagedList<PhieuNhap>)dao.ListAllPaging(MaPhieuNhap, MaTaiKhoan, NgayLap, Stt,page, pagesize);
             ViewBag.TenTimKiem = MaPhieuNhap;
             ViewBag.NgayLap = NgayLap;
-            SetViewBagMaNCC(MaNCC);
-            SetViewBagMaNV(MaNV);
+            SetViewBagMaNV(MaTaiKhoan);
             return View(model);
         }
 
@@ -29,7 +28,6 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            SetViewBagMaNCC();
             var model = new PhieuNhap();
             model.NgayLapPhieu = DateTime.Now;
             return View(model);
@@ -42,6 +40,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
+                phieu.STATUS = true;
                 var dao = new PhieuNhapDao();
                 string result = dao.Insert(phieu);
                 if (result != null)
@@ -60,20 +59,15 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         public void SetViewBagMaNV(string selectedId = null)
         {
             var dao = new PhieuNhapDao();
-            ViewBag.MaNV = new SelectList(dao.ListAllNV(), "MaNV", "MaNV", selectedId);
+            ViewBag.MaTaiKhoan = new SelectList(dao.ListAllNV(), "MaTaiKhoan", "MaTaiKhoan", selectedId);
         }
 
-        public void SetViewBagMaNCC(string selectedId = null)
-        {
-            var dao = new PhieuNhapDao();
-            ViewBag.MaNCC = new SelectList(dao.ListAllNCC(), "MaNCC", "TenNCC", selectedId);
-        }
 
         [HttpGet]
         public ActionResult Edit(string id)
         {
             var hang = new PhieuNhapDao().GetByID(id);
-            SetViewBagMaNCC(hang.MaNCC);
+            SetViewBagMaNV(hang.MaTaiKhoan);
             return View(hang);
         }
 
@@ -101,7 +95,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpDelete]
         public ActionResult Delete(string id)
         {
-            new PhieuNhapDao().Delete(id);
+            new PhieuNhapDao().Lock(id);
             return RedirectToAction("Index", "PhieuNhap");
         }
 

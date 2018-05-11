@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
-using Model.ViewModel;
 using PagedList;
 
 namespace Model.Dao
@@ -16,45 +15,28 @@ namespace Model.Dao
         {
             db = new QuanLiNhaHangDbContext();
         }
-        public List<NhanVienView> NhanvienInfo(string manv)
-        {
-            var model = (from a in db.TaiKhoans
-                         join b in db.ChucVus 
-                         on a.MaChucVu equals b.MaChucVu
-                         where a.MaTaiKhoan.Contains(manv)
-                         select new NhanVienView()
-                         {
-                             MaTaiKhoan = a.MaTaiKhoan,
-                             HoTen=a.HoTen,
-                             TenChucVu=b.TenChucVu,
-                             Ngaytao=a.NgayTao
-                         });
-            return model.ToList();
-        }
+
         public List<ChucVu> ListAll()
         {
             return db.ChucVus.ToList();
         }
-<<<<<<< HEAD:QuanLiNhaHang/Model/Dao/NhanVienDao.cs
 
-        public string Insert(NhanVien nv)
-=======
         public string Insert(TaiKhoan nv)
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd:QuanLiNhaHang/Model/Dao/TaiKhoanDao.cs
         {
             db.TaiKhoans.Add(nv);
             db.SaveChanges();
             return nv.MaTaiKhoan;
         }
-        //public List<>
+
         public bool Update(TaiKhoan nv)
         {
             try
             {
                 var tempt = db.TaiKhoans.Find(nv.MaTaiKhoan);
-                tempt.HoTen = nv.HoTen;
+                tempt.MaTaiKhoan = nv.MaTaiKhoan;
                 tempt.MaChucVu = nv.MaChucVu;
-                tempt.MatKhau = nv.MatKhau;
+                tempt.HoTen = nv.HoTen;
+                tempt.ATM = nv.ATM;
                 tempt.NgayTao = nv.NgayTao;
                 tempt.STATUS = nv.STATUS;
                 db.SaveChanges();
@@ -67,7 +49,7 @@ namespace Model.Dao
             }
         }
 
-        public bool Khoa(string MaNV)
+        public bool Lock(string MaNV)
         {
             try
             {
@@ -83,7 +65,7 @@ namespace Model.Dao
             }
         }
 
-        public IEnumerable<TaiKhoan> ListAllPaging(string TenNV, string MaCV, string DiaChi, string Sdt, Nullable<DateTime>  ngay, Nullable<int> Stt ,int page, int pagesize )
+        public IEnumerable<TaiKhoan> ListAllPaging(string TenNV, string MaCV, string ATM,  Nullable<DateTime>  ngay, Nullable<int> Stt ,int page, int pagesize )
         {
             IQueryable<TaiKhoan> model = db.TaiKhoans;
             if(!string.IsNullOrEmpty(TenNV))
@@ -98,20 +80,11 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.STATUS == true);
             }
-<<<<<<< HEAD:QuanLiNhaHang/Model/Dao/NhanVienDao.cs
-=======
             else model = model.Where(x => x.STATUS == false);
-            //if (!string.IsNullOrEmpty(DiaChi))
-            //{
-            //    model = model.Where(x => x.DiaChi.Contains(DiaChi));
-            //}
-            //if (!string.IsNullOrEmpty(Sdt))
-            //{
-            //    model = model.Where(x => x.Sdt.Contains(Sdt));
-            //}
-
-
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd:QuanLiNhaHang/Model/Dao/TaiKhoanDao.cs
+            if (!string.IsNullOrEmpty(ATM))
+            {
+                model = model.Where(x => x.ATM.Contains(ATM));
+            }
             if (ngay != null)
             {
                 DateTime day = (DateTime)ngay;
@@ -121,9 +94,9 @@ namespace Model.Dao
         }
 
 
-        public TaiKhoan GetByID(string MaNV)
+        public TaiKhoan GetByID(string MaTaiKhoan)
         {
-            return db.TaiKhoans.SingleOrDefault(x => x.MaTaiKhoan == MaNV);
+            return db.TaiKhoans.SingleOrDefault(x => x.MaTaiKhoan == MaTaiKhoan);
         }
 
         public int Login (string userName, string passWord)
@@ -142,11 +115,11 @@ namespace Model.Dao
             }
         }
 
-        public bool Delete(string MaNV)
+        public bool Delete(string MaTaiKhoan)
         {
             try
             {
-                var nv = db.TaiKhoans.Find(MaNV);
+                var nv = db.TaiKhoans.Find(MaTaiKhoan);
                 db.TaiKhoans.Remove(nv);
                 db.SaveChanges();
                 return true;

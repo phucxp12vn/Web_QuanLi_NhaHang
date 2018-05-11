@@ -85,17 +85,8 @@
                                         Mã nhân viên
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        @Html.DropDownListFor(model => model.MaNV, null, new { @class = "form-control col-md-7 col-xs-12", @name = "MaNV" })
-                                        @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })                                          </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaNCC">
-                                        Mã nhà cung cấp
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        @Html.DropDownListFor(model => model.MaNCC, null, new { @class = "form-control col-md-7 col-xs-12", @name = "MaNCC" })
-                                        @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })                                     </div>
+                                        @Html.DropDownListFor(model => model.MaTaiKhoan, null, new { @class = "form-control col-md-7 col-xs-12", @name = "MaNV" })
+                                        @Html.ValidationMessageFor(model => model.MaTaiKhoan, "", new { @class = "text-danger" })                                          </div>
                                 </div>
 
                                 <div class="item form-group">
@@ -136,7 +127,6 @@
                             <th>#</th>
                             <th>Mã Phiếu Nhâp</th>
                             <th>Mã Nhân Viên/th>
-                            <th>Mã Nhà Cung Cấp</th>
                             <th>Ngày Lập</th>
                         </tr>
                     </thead>
@@ -155,8 +145,7 @@
                                })
                                 </td>
                                 <td>@item.MaPhieuNhap</td>
-                                <td>@item.MaNV</td>
-                                <td>@item.MaNCC</td>
+                                <td>@item.MaTaiKhoan</td>
                                 <td>@item.NgayLapPhieu</td>
 
 

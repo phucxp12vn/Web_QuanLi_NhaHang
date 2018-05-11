@@ -13,23 +13,23 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
     public class MatHangController : Controller
     {
         // GET: Manager/MonAn
-        public ActionResult Index(string TenMatHang, string MaDVT, Nullable<decimal> Gia, Nullable<int> SLC, int page = 1, int pagesize = 10)
+        public ActionResult Index(string TenMatHang, string MaDVT, string MaNCC, Nullable<decimal> Gia, Nullable<int> SLC, Nullable<int> Stt, int page = 1, int pagesize = 10)
         {
             var dao = new MatHangDao();
             MatHangModelView model = new MatHangModelView();
-            model.list = (IPagedList<MatHang>)dao.ListAllPaging(TenMatHang, MaDVT, Gia, SLC, page, pagesize);
+            model.list = (IPagedList<MatHang>)dao.ListAllPaging(TenMatHang, MaDVT, MaNCC,Gia, SLC, Stt,page, pagesize);
             ViewBag.TenTimKiem = TenMatHang;
-            ViewBag.MaDVT = MaDVT;
             ViewBag.Gia = Gia;
             ViewBag.SLC = SLC ;
-            SetViewBag(MaDVT);
+            SetViewBagMaDVT(MaDVT);
+            SetViewBagMaNCC(MaNCC);
             return View(model);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            SetViewBag();
+            SetViewBagMaDVT();
             return View();
         }
 
@@ -56,17 +56,24 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         }
 
         // Drop Down
-        public void SetViewBag(string selectedId = null)
+        public void SetViewBagMaDVT(string selectedId = null)
         {
             var dao = new MatHangDao();
-            ViewBag.MaDVT = new SelectList(dao.ListAll(), "MaDVT", "MaDVT", selectedId);
+            ViewBag.MaDVT = new SelectList(dao.ListAllMaDVT(), "MaDVT", "TenDVT", selectedId);
+        }
+
+        public void SetViewBagMaNCC(string selectedId = null)
+        {
+            var dao = new MatHangDao();
+            ViewBag.MaNCC = new SelectList(dao.ListAllMaNCC(), "MaNCC", "TenNCC", selectedId);
         }
 
         [HttpGet]
         public ActionResult Edit(string id)
         {
             var hang = new MatHangDao().GetByID(id);
-            SetViewBag(hang.MaDVT);
+            SetViewBagMaDVT(hang.MaDVT);
+            SetViewBagMaNCC(hang.MaNCC);
             return View(hang);
         }
 
@@ -88,7 +95,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
                     ModelState.AddModelError("", "Thay đổi thông tin không thành công");
                 }
             }
-            return View("Index");
+            return RedirectToAction("Index", "MatHang");
         }
 
         [HttpDelete]

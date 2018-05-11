@@ -14,11 +14,11 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
     public class MonAnController : Controller
     {
         // GET: Manager/MonAn
-        public ActionResult Index(string TenMonAn, string MaNhomMon, Nullable<decimal> Gia,string MaMatHang, int page = 1, int pagesize = 10)
+        public ActionResult Index(string TenMonAn, string MaNhomMon, Nullable<decimal> Gia,string MaMatHang, Nullable<int> Stt, int page = 1, int pagesize = 10)
         {
             var dao = new MonAnDao();
             ThanhPhanModel mon = new ThanhPhanModel();
-            mon.listmonan = (PagedList<MonAN>)dao.ListAllPaging(TenMonAn, MaNhomMon, Gia, MaMatHang, page, pagesize);
+            mon.listmonan = (PagedList<MonAn>)dao.ListAllPaging(TenMonAn, MaNhomMon, Gia, MaMatHang,Stt, page, pagesize);
             ViewBag.TenTimKiem = TenMonAn;
             ViewBag.Gia = Gia;
             SetViewBagMaNhomMon(MaNhomMon);
@@ -32,7 +32,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
             {
                 var dao = new MonAnDao();
                 ThanhPhanModel thanhphan = new ThanhPhanModel();
-                thanhphan.MonAN = dao.GetByID(id);
+                thanhphan.MonAn = dao.GetByID(id);
                 thanhphan.list = (PagedList<ThanhPhan>)dao.ListDetail(id, page, pagesize);
                 return View(thanhphan);
             }
@@ -50,10 +50,11 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(MonAN mon)
+        public ActionResult Create(MonAn mon)
         {
             if (ModelState.IsValid)
             {
+                mon.STATUS = true;
                 var dao = new MonAnDao();
                 string result = dao.Insert(mon);
                 if (result != null)
@@ -74,7 +75,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
             if (id != null)
             {
                 ThanhPhan tp = new ThanhPhan();
-                tp.MonAN = new MonAnDao().GetByID(id);
+                tp.MonAn = new MonAnDao().GetByID(id);
                 SetViewBagMatHang();
                 return View(tp);
             }
@@ -144,9 +145,9 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
             ThanhPhanModel thanhphan = new ThanhPhanModel();
             if (!string.IsNullOrEmpty(id))
             {
-                thanhphan.MonAN = dao.GetByID(id);
+                thanhphan.MonAn = dao.GetByID(id);
                 thanhphan.list = (PagedList<ThanhPhan>)dao.ListDetail(id, page, pagesize);
-                thanhphan.MaNhomMon = thanhphan.MonAN.MaNhomMon;
+                thanhphan.MaNhomMon = thanhphan.MonAn.MaNhomMon;
                 SetViewBagMaNhomMon(thanhphan.MaNhomMon);
             }
             return View(thanhphan);
@@ -159,11 +160,11 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         public ActionResult Edit(ThanhPhanModel thanhphan)
         {
 
-            if (!string.IsNullOrEmpty(thanhphan.MonAN.MaMonAn) && !string.IsNullOrEmpty(thanhphan.MaNhomMon))
+            if (!string.IsNullOrEmpty(thanhphan.MonAn.MaMonAn) && !string.IsNullOrEmpty(thanhphan.MaNhomMon))
             {
                 var dao = new MonAnDao();
-                thanhphan.MonAN.MaNhomMon = thanhphan.MaNhomMon;
-                bool result = dao.Update(thanhphan.MonAN);             
+                thanhphan.MonAn.MaNhomMon = thanhphan.MaNhomMon;
+                bool result = dao.Update(thanhphan.MonAn);             
                 if (result)
                 {
                     return RedirectToAction("Index", "MonAn");
@@ -184,7 +185,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
             {
                 ThanhPhan tp = new ThanhPhan();
                 var dao = new MonAnDao();
-                tp.MonAN = dao.GetByID(MaMonAn);
+                tp.MonAn = dao.GetByID(MaMonAn);
                 tp = dao.GetDetailByID(MaMonAn, MaMatHang);
                 SetViewBagMatHang();
                 return View(tp);
@@ -197,7 +198,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpPost]
         public ActionResult EditDetail(ThanhPhan thanhphan)
         {
-            thanhphan.MaMonAn = thanhphan.MonAN.MaMonAn;
+            thanhphan.MaMonAn = thanhphan.MonAn.MaMonAn;
             //nv.Status = true;
             if (thanhphan.MaMatHang != null && thanhphan.MaMonAn != null )
             {
@@ -218,7 +219,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
 
                 if (result!=null)
                 {
-                    return RedirectToAction("Detail/" + thanhphan.MonAN.MaMonAn, "MonAn");
+                    return RedirectToAction("Detail/" + thanhphan.MonAn.MaMonAn, "MonAn");
                 }
                 else
                 {
@@ -235,7 +236,7 @@ namespace QuanLiNhaHang.Areas.Manager.Controllers
         [HttpDelete]
         public ActionResult Delete(string id)
         {
-            new MonAnDao().Delete(id);
+            new MonAnDao().Lock(id);
             return RedirectToAction("Index","MonAn");
         }
 

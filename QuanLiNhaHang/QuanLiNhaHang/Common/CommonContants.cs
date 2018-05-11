@@ -7,6 +7,6 @@ namespace QuanLiNhaHang.Common
 {
     public static class CommonContants
     {
-        public static string TaiKhoan_SESSION = "TaiKhoan_SESSION";
+        public static string NHANVIEN_SESSION = "NHANVIEN_SESSION";
     }
 }

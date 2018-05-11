@@ -16,9 +16,9 @@ namespace Model.Dao
             db = new QuanLiNhaHangDbContext();
         }
 
-        public List<NhomMonAN> ListAllNhomMon()
+        public List<NhomMonAn> ListAllNhomMon()
         {
-            return db.NhomMonANs.ToList();
+            return db.NhomMonAns.ToList();
         }
 
         public List<MatHang> ListAllMatHang()
@@ -26,9 +26,9 @@ namespace Model.Dao
             return db.MatHangs.ToList();
         }
 
-        public string Insert(MonAN mon)
+        public string Insert(MonAn mon)
         {
-            db.MonANs.Add(mon);
+            db.MonAns.Add(mon);
             db.SaveChanges();
             return mon.MaMonAn;
         }
@@ -45,9 +45,9 @@ namespace Model.Dao
             return db.ThanhPhans.SingleOrDefault(x=>x.MaMatHang == thanhphan.MaMatHang && x.MaMonAn == thanhphan.MaMonAn);
         }
 
-        public IEnumerable<MonAN> ListAllPaging(string MaMonAn, string MaNhomMon, Nullable<decimal> Gia,string thanhphan,int page, int pagesize)
+        public IEnumerable<MonAn> ListAllPaging(string MaMonAn, string MaNhomMon, Nullable<decimal> Gia,string thanhphan, Nullable<int> Stt,int page, int pagesize)
         {
-            IQueryable<MonAN> model = db.MonANs;
+            IQueryable<MonAn> model = db.MonAns;
             IQueryable<ThanhPhan> ThanhPhan = db.ThanhPhans;
 
             if (!string.IsNullOrEmpty(MaMonAn))
@@ -58,11 +58,11 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.MaNhomMon.Contains(MaNhomMon));
             }
-            //if (Stt == 1 || Stt != 0)
-            //{
-            //    model = model.Where(x => x.Status == true);
-            //}
-            //else model = model.Where(x => x.Status == false);
+            if (Stt == 1 || Stt != 0)
+            {
+                model = model.Where(x => x.STATUS == true);
+            }
+            else model = model.Where(x => x.STATUS == false);
             if (!string.IsNullOrEmpty(Gia.ToString()))
             {
                 model = model.Where(x => x.Gia == Gia);
@@ -89,9 +89,9 @@ namespace Model.Dao
             return model.OrderByDescending(x => x.MaMatHang).ToPagedList(page, pagesize);
         }
 
-        public MonAN GetByID(string MaMonAn)
+        public MonAn GetByID(string MaMonAn)
         {
-            return db.MonANs.SingleOrDefault(x => x.MaMonAn == MaMonAn);
+            return db.MonAns.SingleOrDefault(x => x.MaMonAn == MaMonAn);
         }
         public ThanhPhan GetDetailByID(string MaMonAn,string MaMatHang)
         {
@@ -99,11 +99,11 @@ namespace Model.Dao
             return mon;
         }
 
-        public bool Update(MonAN mon)
+        public bool Update(MonAn mon)
         {
             try
             {
-                var tempt = db.MonANs.Find(mon.MaMonAn);
+                var tempt = db.MonAns.Find(mon.MaMonAn);
                 tempt.TenMon = mon.TenMon;
                 tempt.MaNhomMon = mon.MaNhomMon;
                 tempt.Gia= mon.Gia;
@@ -134,12 +134,12 @@ namespace Model.Dao
             }
         }
 
-        public bool Delete(string MaMonAn)
+        public bool Lock(string MaMonAn)
         {
             try
             {
-                var mon = db.MonANs.Find(MaMonAn);
-                db.MonANs.Remove(mon);
+                var mon = db.MonAns.Find(MaMonAn);
+                mon.STATUS = false;
                 db.SaveChanges();
                 return true;
             }

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿@model QuanLiNhaHang.Areas.Manager.Models.NhanVienModelView
-=======
-﻿@model PagedList.IPagedList<Model.EF.TaiKhoan>
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
+﻿@model QuanLiNhaHang.Areas.Manager.Models.TaiKhoanModelView
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
@@ -85,7 +81,6 @@
                                         <input type="text" value="@ViewBag.TenTimKiem" name="TenNV" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
-<<<<<<< HEAD
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaCV">
                                         Mã Chức Vụ
@@ -100,26 +95,10 @@
                                         Địa Chỉ
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" value="@ViewBag.DiaChi" name="DiaChi" class="form-control col-md-7 col-xs-12">
+                                        <input type="text" value="@ViewBag.ATM" name="ATM" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
-                                        Số Điện Thoại
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" value="@ViewBag.Sdt" name="Sdt" class="form-control col-md-7 col-xs-12">
-                                    </div>
-=======
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
-                                    Ngày Gia Nhập
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" value="@ViewBag.Day" name="Ngay" class="form-control col-md-7 col-xs-12">
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
-                                </div>
+                          
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sdt">
                                         Ngày Gia Nhập
@@ -133,8 +112,6 @@
                                         Tình Trạng
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        @*<input type="text" placeholder="1: còn làm việc , 0: đã nghĩ"value="@ViewBag.Stt" name="Stt" class="form-control col-md-7 col-xs-12">*@
-
                                         <div class="btn-group">
                                             <select name="Stt" class="btn btn-default dropdown-toggle">
                                                 <option value="null" selected="selected">---Chọn----</option>
@@ -176,13 +153,8 @@
                                 <th>#</th>
                                 <th>Mã Nhân Viên</th>
                                 <th>Tên Nhân Viên</th>
-<<<<<<< HEAD
                                 <th>Mã Chức Vụ</th>
-                                <th>Địa Chỉ</th>
-                                <th>Số điện thoại</th>
-=======
-                                <th>Mã Chức Vu</th>
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
+                                <th>Số ATM</th>
                                 <th>Ngày gia nhập</th>
 
                             </tr>
@@ -196,11 +168,7 @@
                                         @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaTaiKhoan }, new AjaxOptions
                                        {
                                            Confirm = "Bạn muốn xóa bản ghi này?",
-<<<<<<< HEAD
-                                           OnComplete = "$('#row_" + @item.MaNV + "').remove()",
-=======
-                                           OnComplete = "$('row_" + @item.MaTaiKhoan + "').remove()",
->>>>>>> 1a5849edc2281ea28ad029556fab3ff509caacfd
+                                           OnComplete = "$('#row_" + @item.MaTaiKhoan + "').remove()",
                                            HttpMethod = "Delete"
 
                                        })
@@ -208,6 +176,7 @@
                                     <td>@item.MaTaiKhoan</td>
                                     <td>@item.HoTen</td>
                                     <td>@item.MaChucVu</td>
+                                    <td>@item.ATM</td>
                                     <td>@item.NgayTao</td>
                                 </tr>
 
